@@ -23,6 +23,11 @@ Max = models.Max
 # Create your models here.
 
 
+def get_entity_lookups(entity):
+    ctype = ContentType.objects.get_for_model(entity)
+    return {'entity_type': ctype, 'entity_id': entity.pk}
+
+
 class Schema(BaseSchema):
     def __unicode__(self):
         return self.name
@@ -30,6 +35,23 @@ class Schema(BaseSchema):
     class Meta:
         verbose_name = _('Attribute')
         verbose_name_plural = _('Attributes')
+
+    def _save_single_attr(self, entity, value=None, schema=None,
+                          create_nulls=False, extra={}):
+        schema = schema or self
+        lookups = dict(get_entity_lookups(entity), schema=schema, **extra)
+        try:
+            attr = self.attrs.get(**lookups)
+        except self.attrs.model.DoesNotExist:
+            attr = self.attrs.model(**lookups)
+        if create_nulls or value != attr.value:
+            if schema.datatype == Schema.TYPE_BOOLEAN:
+                if value is False and entity.is_parent:
+                    pass
+            attr.value = value
+            for k, v in extra.items():
+                setattr(attr, k, v)
+            attr.save()
 
 
 class Category(NS_Node):
@@ -52,6 +74,13 @@ class Attribute(BaseAttribute):
     schema = models.ForeignKey(Schema, related_name='attrs')
     choice = models.ForeignKey(Choice, blank=True, null=True)
     description = models.CharField(max_length=200, blank=True)
+
+    def __unicode__(self):
+        return self.schema.title or self.schema.name
+
+    class Meta:
+        verbose_name = _('Attribute value')
+        verbose_name_plural = _('Attribute values')
 
 
 class Cottage(BaseEntity, AL_Node):

@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import autoslug.fields
+import django.core.files.storage
+import Cottage_Club.main.models
 
 
 class Migration(migrations.Migration):
@@ -65,14 +67,15 @@ class Migration(migrations.Migration):
             name='Cottage',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('structure', models.CharField(default=b'standalone', max_length=10, verbose_name='Product structure', choices=[(b'standalone', 'Stand-alone product'), (b'parent', 'Parent product'), (b'child', 'Child product')])),
-                ('title', models.CharField(max_length=255, verbose_name='Product title', blank=True)),
+                ('structure', models.CharField(default=b'parent', max_length=10, verbose_name='Object structure', choices=[(b'parent', 'Parent object'), (b'child', 'Inner object')])),
+                ('sib_order', models.PositiveIntegerField(default=0)),
+                ('title', models.CharField(max_length=255, verbose_name='Object title', blank=True)),
                 ('description', models.TextField(verbose_name='Description', blank=True)),
                 ('is_recommended', models.BooleanField(default=False)),
                 ('is_banner', models.BooleanField(default=False)),
                 ('date_created', models.DateTimeField(auto_now_add=True, verbose_name='Date created')),
-                ('category', models.ForeignKey(to='main.Category')),
-                ('parent', models.ForeignKey(related_name='children', blank=True, to='main.Cottage', help_text="Only choose a parent product if you're creating a child product.  For example if this is a size 4 of a particular t-shirt.  Leave blank if this is a stand-alone product (i.e. there is only one version of this product).", null=True, verbose_name='Parent product')),
+                ('category', models.ForeignKey(blank=True, to='main.Category', help_text='leave blank if this is not a parent object', null=True)),
+                ('parent', models.ForeignKey(related_name='children', verbose_name='Parent object', blank=True, to='main.Cottage', null=True)),
             ],
             options={
                 'abstract': False,
@@ -83,13 +86,16 @@ class Migration(migrations.Migration):
             name='Image',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('url', models.ImageField(upload_to=b'')),
-                ('entity_id', models.PositiveIntegerField()),
-                ('entity_type', models.ForeignKey(to='contenttypes.ContentType')),
+                ('object_id', models.PositiveIntegerField()),
+                ('caption', models.TextField(null=True, verbose_name='Caption', blank=True)),
+                ('is_main', models.BooleanField(default=False, verbose_name='Main image')),
+                ('order', models.IntegerField(default=0, verbose_name='Order')),
+                ('image', models.ImageField(default=b'images/default_product.jpg', upload_to=b'cottage_images', storage=django.core.files.storage.FileSystemStorage(), verbose_name='Image')),
+                ('content_type', models.ForeignKey(to='contenttypes.ContentType')),
             ],
             options={
             },
-            bases=(models.Model,),
+            bases=(models.Model, Cottage_Club.main.models.ImageContainingModel),
         ),
         migrations.CreateModel(
             name='Schema',
@@ -132,7 +138,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='choice',
             name='schema',
-            field=models.ForeignKey(to='main.Schema'),
+            field=models.ForeignKey(related_name='choices', to='main.Schema'),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -144,7 +150,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='attribute',
             name='choice',
-            field=models.ForeignKey(to='main.Choice'),
+            field=models.ForeignKey(blank=True, to='main.Choice', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -156,7 +162,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='attribute',
             name='schema',
-            field=models.ForeignKey(to='main.Schema'),
+            field=models.ForeignKey(related_name='attrs', to='main.Schema'),
             preserve_default=True,
         ),
         migrations.AlterUniqueTogether(

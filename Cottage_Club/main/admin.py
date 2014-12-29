@@ -1,58 +1,15 @@
 from django.contrib import admin
-from django.utils.functional import curry
 from django.contrib.contenttypes.generic import GenericTabularInline
 from treebeard.admin import TreeAdmin
 from django.forms import formsets
+from django.utils.safestring import mark_safe
 from treebeard.forms import movenodeform_factory
-from eav.admin import BaseEntityAdmin, BaseEntityInline, BaseSchemaAdmin, BaseEntityInlineFormSet
-from Cottage_Club.main.forms import CottageDynamicForm, SchemaForm, image_form_factory
-from Cottage_Club.main.models import Category, Cottage, SchemaForCategory, Schema, Choice, Image
+from eav.admin import BaseEntityAdmin, BaseSchemaAdmin, BaseEntityInlineFormSet, BaseEntityInline
+from Cottage_Club.main.forms import CottageDynamicForm, CottageDynamicChildForm, SchemaForm, image_form_factory
+from Cottage_Club.main.models import Category, Cottage, Schema, Choice, Image, Attribute
 
 
 ImageAdminForm = image_form_factory()
-
-
-class CottageBaseFormSet(BaseEntityInlineFormSet):
-    def __init__(self, *args, **kwargs):
-        """
-        Grabs the curried initial values and stores them into a 'private'
-        variable. Note: the use of self.__initial is important, using
-        self.initial or self._initial will be erased by a parent class
-        """
-        self.__initial = kwargs.pop('initial', [])
-        super(CottageBaseFormSet, self).__init__(*args, **kwargs)
-
-    def total_form_count(self):
-        return len(self.__initial) + self.extra
-
-    def _construct_forms(self):
-        return formsets.BaseFormSet._construct_forms(self)
-
-    def _construct_form(self, i, **kwargs):
-        if self.__initial:
-            try:
-                kwargs['initial'] = self.__initial[i]
-            except IndexError:
-                pass
-        return formsets.BaseFormSet._construct_form(self, i, **kwargs)
-
-CottageFormSet = formsets.formset_factory(CottageDynamicForm, formset=CottageBaseFormSet)
-
-
-def images_inline_factory(lang='en', max_width='', debug=False):
-    """  Returns InlineModelAdmin for attached images.
-        'lang' is the language for GearsUploader (can be 'en' and 'ru' at the
-        moment). 'max_width' is default resize width parameter to be set in
-        widget.
-    """
-
-    class _AttachedImagesInline(GenericTabularInline):
-        model = Image
-        form = image_form_factory(lang, debug)
-        template = 'generic_images/attached_images_inline.html'
-        max_w = max_width
-
-    return _AttachedImagesInline
 
 
 class ImagesInline(GenericTabularInline):
@@ -63,49 +20,48 @@ class ImagesInline(GenericTabularInline):
     id_field_name = 'object_id'
 
 
-class CottageAdminInline(BaseEntityInline, admin.StackedInline):
+class CottageFormSet(BaseEntityInlineFormSet):
+    pass
+
+
+class CottageAdminInline(admin.StackedInline):
     model = Cottage
-    form = CottageDynamicForm
-    formset = CottageFormSet
-    exclude = ('structure',)
-    readonly_fields = ('parent', )
+    exclude = ('sib_order', )
+    readonly_fields = ('category',)
     extra = 0
 
     def get_fields(self, request, obj=None):
         if self.fields:
             return self.fields
-        formset = self.get_formset(request, obj, fields=None)
-        fk_name = self.fk_name or formset.fk.name
-        kw = {fk_name: obj} if obj else {}
-        instance = self.model(**kw)
-        form = formset.form(request.POST, instance=instance)
-        return list(formset.form.base_fields)\
-               + (list(form.dynamic_fields) if hasattr(form, 'dynamic_fields') else [])\
-               + list(self.get_readonly_fields(request, obj))
+        form = self.get_formset(request, obj, fields=None).form
+        return list(form.base_fields) + list(self.get_readonly_fields(request, obj))
 
     def get_fieldsets(self, request, obj=None):
+        declared_fieldsets = self.declared_fieldsets
+        if declared_fieldsets:
+            return declared_fieldsets
+
         if self.fieldsets:
             return self.fieldsets
-        return [(None, {'fields': self.get_fields(request, obj)})]
+        values = self.get_fields(request, obj)
+        return [(None, {'fields': values})]
 
 
 class CottageAdminInlineCottage(CottageAdminInline):
-    readonly_fields = ('category', 'structure')
-    exclude = []
-
-    def get_formset(self, request, obj=None, **kwargs):
-        initial = []
-        if request.method == "GET":
-            initial.append({
-                'structure': Cottage.CHILD,
-            })
-        formset = super(CottageAdminInlineCottage, self).get_formset(request, obj, **kwargs)
-        formset.__init__ = curry(formset.__init__, initial=initial)
-        return formset
+    form = CottageDynamicChildForm
+    readonly_fields = ('category',)
+    exclude = ['sib_order']
 
 
-class InnerCottageAdminInline(CottageAdminInline):
-    pass
+class AttributeInline(GenericTabularInline):
+    model = Attribute
+    extra = 0
+    fields = ('description', )
+    ct_field = 'entity_type'
+    ct_fk_field = 'entity_id'
+
+    def has_add_permission(self, request):
+        return False
 
 
 class SchemaInline(admin.StackedInline):
@@ -119,22 +75,53 @@ class SchemaForCategoryInline(admin.StackedInline):
     extra = 0
 
 
-class CottageAdmin(BaseEntityAdmin, TreeAdmin):
+class CottageAdmin(TreeAdmin):
     form = CottageDynamicForm
-    inlines = [ImagesInline, CottageAdminInlineCottage]
-    exclude = ('sib_order', )
+    inlines = (ImagesInline, CottageAdminInline, AttributeInline)
 
-    def save_formset(self, request, form, formset, change):
-        if change:
-            return super(CottageAdmin, self).save_formset(request, form, formset, True)
+    eav_fieldsets = None
+
+    def render_change_form(self, request, context, **kwargs):
+        """
+        Wrapper for ModelAdmin.render_change_form. Replaces standard static
+        AdminForm with an EAV-friendly one. The point is that our form generates
+        fields dynamically and fieldsets must be inferred from a prepared and
+        validated form instance, not just the form class. Django does not seem
+        to provide hooks for this purpose, so we simply wrap the view and
+        substitute some data.
+        """
+        form = context['adminform'].form
+        formset = context['inline_admin_formsets']
+
+        all_fields = form.fields.keys()
+        model_fields = form.base_fields.keys()
+        eav_fields = filter(lambda x: x not in model_fields, all_fields)
+
+        if self.eav_fieldsets:
+            fieldsets_eav = self.eav_fieldsets + (('Attributes', {'classes': ('collapse',), 'fields': tuple(eav_fields)}),)
+            fieldsets = fieldsets_eav
         else:
-            if form.is_valid() and formset.is_valid():
-                instances = formset.save(commit=False)
-                for instance in instances:
-                    instance.structure = Cottage.CHILD
-                    instance.category = instance.parent.category
-                    instance.save()
-                formset.save_m2m()
+            # or infer correct data from the form
+            fieldsets = [(None, {'fields': all_fields})]
+
+        adminform = admin.helpers.AdminForm(form, fieldsets,
+                                            self.prepopulated_fields)
+        inline_media = []
+        if formset:
+            if len(formset) > 1:
+                for fset in formset:
+                    if inline_media:
+                        inline_media += fset.media
+                    else:
+                        inline_media = fset.media
+            else:
+                inline_media = formset[0].media
+
+        media = mark_safe(self.media + adminform.media + inline_media)
+        context.update(adminform=adminform, media=media)
+
+        super_meth = super(CottageAdmin, self).render_change_form
+        return super_meth(request, context, **kwargs)
 
     class Media:
         js = ('js/admin/CottageAdmin.js',)
@@ -148,10 +135,13 @@ class CategoryAdmin(TreeAdmin):
 
 class SchemaAdmin(BaseSchemaAdmin):
     form = SchemaForm
+    exclude = ['required', 'filtered']
+    list_display = ('title', 'name', 'datatype', 'help_text')
     inlines = (SchemaForCategoryInline, )
 
 # admin.site.unregister(AttachedImagesInline)
 admin.site.register(Cottage, CottageAdmin)
+# admin.site.register(Attribute, AttributeAdmin)
 admin.site.register(Schema, SchemaAdmin)
 admin.site.register(Choice)
 admin.site.register(Category, CategoryAdmin)

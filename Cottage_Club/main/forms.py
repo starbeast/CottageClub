@@ -2,7 +2,7 @@ from eav.forms import BaseDynamicEntityForm
 from eav.forms import BaseSchemaForm
 from collections import OrderedDict
 from Cottage_Club.main.models import Cottage, Schema, Image
-from django.forms import ValidationError, ModelForm, CharField
+from django.forms import ValidationError, ModelForm, CharField, widgets, TextInput
 from django.utils.translation import ugettext_lazy as _
 from copy import deepcopy
 
@@ -34,7 +34,9 @@ class DynamicEntityForm(BaseDynamicEntityForm):
         if not self.check_eav_allowed():
             return
 
-        for schema in self.instance.get_schemata():
+        iterator, empty = self.instance.get_schemata(), False
+
+        for schema in iterator:
 
             defaults = {
                 'label':     schema.title.capitalize(),
@@ -44,23 +46,30 @@ class DynamicEntityForm(BaseDynamicEntityForm):
 
             datatype = schema.datatype
             if datatype == schema.TYPE_MANY:
-                choices = getattr(self.instance, schema.name)
-                defaults.update({'queryset': schema.get_choices(),
-                                 'initial': [x.pk for x in choices]})
+                if not empty:
+                    choices = getattr(self.instance, schema.name)
+                    defaults.update({'queryset': schema.get_choices(),
+                                     'initial': [x.pk for x in choices]})
+                else:
+                    defaults.update({'queryset', schema.get_choices()})
             elif datatype == schema.TYPE_ONE:
-                choice = getattr(self.instance, schema.name)
-                defaults.update({'queryset': schema.get_choices(),
-                                 'initial': choice.pk if choice else None,
-                                 # if schema is required remove --------- from ui
-                                 'empty_label' : None if schema.required else u"---------"})
-
+                if not empty:
+                    choice = getattr(self.instance, schema.name)
+                    defaults.update({'queryset': schema.get_choices(),
+                                     'initial': choice.pk if choice else None,
+                                     # if schema is required remove --------- from ui
+                                     'empty_label' : None if schema.required else u"---------"})
+                else:
+                    defaults.update({'queryset': schema.get_choices(),
+                                     # if schema is required remove --------- from ui
+                                     'empty_label': None if schema.required else u"---------"})
             extra = self.FIELD_EXTRA.get(datatype, {})
             if hasattr(extra, '__call__'):
                 extra = extra(schema)
             defaults.update(extra)
 
-            MappedField = self.FIELD_CLASSES[datatype]
-            field = MappedField(**defaults)
+            mapped_field = self.FIELD_CLASSES[datatype]
+            field = mapped_field(**defaults)
             self.fields[schema.name] = field
             self.dynamic_fields[schema.name] = field
 
@@ -72,6 +81,20 @@ class DynamicEntityForm(BaseDynamicEntityForm):
 
 class CottageDynamicForm(DynamicEntityForm):
     model = Cottage
+
+
+class CottageDynamicChildForm(DynamicEntityForm):
+    initial_fields = {'structure': Cottage.CHILD}
+    structure = CharField(
+        widget=TextInput(attrs={'readonly':'readonly'})
+    )
+
+    def __init__(self, *args, **kwargs):
+        initial = kwargs.pop('initial', {})
+        for key, val in self.initial_fields.iteritems():
+            initial[key] = initial.get(key, None) or val
+        kwargs['initial'] = initial
+        super(CottageDynamicChildForm, self).__init__(*args, **kwargs)
 
 
 class SchemaForm(BaseSchemaForm):
