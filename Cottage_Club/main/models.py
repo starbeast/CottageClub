@@ -131,15 +131,16 @@ class Cottage(BaseEntity, AL_Node):
     date_created = models.DateTimeField(_("Date created"), auto_now_add=True)
 
     def has_attributes(self):
-        if self.is_child:
-            return self.parent.has_attributes()
-        ancestors = self.category.get_ancestors()
-        for ancestor in ancestors:
-            if ancestor.schemas.exists():
-                return True
-            else:
-                continue
-        return True if self.category.schemas.exists() else False
+        return bool(self.attrs.all())
+        # if self.is_child:
+        #     return self.parent.has_attributes()
+        # ancestors = self.category.get_ancestors()
+        # for ancestor in ancestors:
+        #     if ancestor.schemas.exists():
+        #         return True
+        #     else:
+        #         continue
+        # return True if self.category.schemas.exists() else False
 
     def __unicode__(self):
         return self.title
