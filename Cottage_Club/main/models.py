@@ -5,6 +5,7 @@ from eav.models import BaseAttribute, BaseSchema, BaseChoice, BaseEntity
 
 from treebeard.ns_tree import NS_Node
 from treebeard.al_tree import AL_Node
+from mptt.models import MPTTModel, TreeForeignKey
 
 from django.core.files.storage import FileSystemStorage as OverwriteStorage
 
@@ -54,6 +55,18 @@ class Schema(BaseSchema):
             attr.save()
 
 
+class MpttTest(MPTTModel):
+    name = models.CharField(max_length=30)
+    schemas = models.ManyToManyField(Schema, through='SchemaForMpttTest', related_name='mptts')
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
+
+    class MPTTMeta:
+        order_insertion_by = ['name']
+
+    def __unicode__(self):
+        return self.name
+
+
 class Category(NS_Node):
     name = models.CharField(max_length=30)
     schemas = models.ManyToManyField(Schema, through='SchemaForCategory', related_name='categories')
@@ -91,6 +104,9 @@ class Cottage(BaseEntity, AL_Node):
         (CHILD, _('Inner object'))
     )
 
+    attrs = generic.GenericRelation(Attribute, object_id_field='entity_id',
+                                    content_type_field='entity_type')
+
     objects = CottageManager()
     category = models.ForeignKey(
         Category
@@ -113,6 +129,17 @@ class Cottage(BaseEntity, AL_Node):
     is_banner = models.BooleanField(default=False)
 
     date_created = models.DateTimeField(_("Date created"), auto_now_add=True)
+
+    def has_attributes(self):
+        if self.is_child:
+            return self.parent.has_attributes()
+        ancestors = self.category.get_ancestors()
+        for ancestor in ancestors:
+            if ancestor.schemas.exists():
+                return True
+            else:
+                continue
+        return True if self.category.schemas.exists() else False
 
     def __unicode__(self):
         return self.title
@@ -149,11 +176,13 @@ class Cottage(BaseEntity, AL_Node):
         """
         Validates a child product
         """
-        if not self.parent_id:
-            raise ValidationError(_("A child product needs a parent."))
-        if self.parent_id and not self.parent.is_parent:
-            raise ValidationError(
-                _("You can only assign child products to parent products."))
+        pass
+        # use this validation somewhere else
+        # if not self.parent_id:
+        #     raise ValidationError(_("A child product needs a parent."))
+        # if self.parent_id and not self.parent.is_parent:
+        #     raise ValidationError(
+        #         _("You can only assign child products to parent products."))
 
     def _clean_parent(self):
         """
@@ -461,6 +490,18 @@ class Image(models.Model, ImageContainingModel):
     image = models.ImageField(_('Image'), upload_to='cottage_images'
                               , storage=OverwriteStorage()
                               , default=settings.DEFAULT_IMAGE)
+
+
+class SchemaForMpttTest(models.Model):
+    schema = models.ForeignKey(Schema)
+    mptttest = models.ForeignKey(MpttTest)
+    will_be_a_filter = models.BooleanField(default=False)
+    name_on_forms = models.CharField(max_length=100, blank=True)
+
+    class Meta:
+        verbose_name = _('Attribute of MPTT')
+        verbose_name_plural = _('Attributes of MPTT')
+        unique_together = ['schema', 'mptttest']
 
 
 class SchemaForCategory(models.Model):

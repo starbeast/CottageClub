@@ -2,14 +2,51 @@ from django.contrib import admin
 from django.contrib.contenttypes.generic import GenericTabularInline
 from treebeard.admin import TreeAdmin
 from django.forms import formsets
+from django.forms.models import BaseInlineFormSet
 from django.utils.safestring import mark_safe
 from treebeard.forms import movenodeform_factory
 from eav.admin import BaseEntityAdmin, BaseSchemaAdmin, BaseEntityInlineFormSet, BaseEntityInline
-from Cottage_Club.main.forms import CottageDynamicForm, CottageDynamicChildForm, SchemaForm, image_form_factory
-from Cottage_Club.main.models import Category, Cottage, Schema, Choice, Image, Attribute
+from Cottage_Club.main.forms import CottageDynamicCategoryForm, CottageDynamicChildForm, CottageDynamicForm, SchemaForm, image_form_factory
+from Cottage_Club.main.models import Category, Cottage, Schema, Choice, Image, Attribute, MpttTest
+from mptt.admin import MPTTModelAdmin, MPTTAdminForm
+from mptt.forms import TreeNodeChoiceField
 
 
 ImageAdminForm = image_form_factory()
+
+
+class SchemaForMpttTestInline(admin.StackedInline):
+    model = MpttTest.schemas.through
+    extra = 0
+
+
+class MPTTAdminMixin(object):
+    form = MPTTAdminForm
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        from mptt.models import MPTTModel, TreeForeignKey
+        if issubclass(db_field.rel.to, MPTTModel) \
+                and not isinstance(db_field, TreeForeignKey) \
+                and not db_field.name in self.raw_id_fields:
+            defaults = dict(form_class=TreeNodeChoiceField, queryset=db_field.rel.to.objects.all(), required=False)
+            defaults.update(kwargs)
+            kwargs = defaults
+        return super(MPTTAdminMixin, self).formfield_for_foreignkey(db_field,
+                                                                    request,
+                                                                    **kwargs)
+
+
+class MPTTTabularInlineAdmin(MPTTAdminMixin, admin.TabularInline):
+    model = MpttTest
+    extra = 0
+    pass
+
+
+class CustomizedMpttAdmin(MPTTModelAdmin):
+    inlines = [MPTTTabularInlineAdmin, SchemaForMpttTestInline]
+
+
+# admin.site.register(MpttTest, CustomizedMpttAdmin)
 
 
 class ImagesInline(GenericTabularInline):
@@ -26,8 +63,10 @@ class CottageFormSet(BaseEntityInlineFormSet):
 
 class CottageAdminInline(admin.StackedInline):
     model = Cottage
+    form = CottageDynamicCategoryForm
     exclude = ('sib_order', )
-    readonly_fields = ('category',)
+    readonly_fields = ('parent', )
+    formset = CottageFormSet
     extra = 0
 
     def get_fields(self, request, obj=None):
@@ -50,7 +89,6 @@ class CottageAdminInline(admin.StackedInline):
 class CottageAdminInlineCottage(CottageAdminInline):
     form = CottageDynamicChildForm
     readonly_fields = ('category',)
-    exclude = ['sib_order']
 
 
 class AttributeInline(GenericTabularInline):
@@ -77,9 +115,10 @@ class SchemaForCategoryInline(admin.StackedInline):
 
 class CottageAdmin(TreeAdmin):
     form = CottageDynamicForm
-    inlines = (ImagesInline, CottageAdminInline, AttributeInline)
-
+    inlines = (ImagesInline, CottageAdminInlineCottage, AttributeInline)
+    change_form_template = "admin/cottage_change_form.html"
     eav_fieldsets = None
+    exclude = ('sib_order', )
 
     def render_change_form(self, request, context, **kwargs):
         """
@@ -123,6 +162,24 @@ class CottageAdmin(TreeAdmin):
         super_meth = super(CottageAdmin, self).render_change_form
         return super_meth(request, context, **kwargs)
 
+    def get_formsets(self, request, obj=None):
+        for inline in self.get_inline_instances(request, obj):
+            if isinstance(inline, AttributeInline) and (obj is None or not obj.has_attributes()):
+                continue
+            yield inline.get_formset(request, obj)
+
+    def save_formset(self, request, form, formset, change):
+        if not isinstance(formset, CottageFormSet):
+            super(CottageAdmin, self).save_formset(request, form, formset, change)
+        else:
+            if formset.is_valid():
+                for inner_form in (formset.extra_forms + formset.initial_forms):
+                    if inner_form.is_valid():
+                        if not inner_form.instance.category:
+                            inner_form.instance.category = form.instance.category
+                            inner_form.changed_data.append('category')
+            super(CottageAdmin, self).save_formset(request, form, formset, change)
+
     class Media:
         js = ('js/admin/CottageAdmin.js',)
     
@@ -139,9 +196,8 @@ class SchemaAdmin(BaseSchemaAdmin):
     list_display = ('title', 'name', 'datatype', 'help_text')
     inlines = (SchemaForCategoryInline, )
 
-# admin.site.unregister(AttachedImagesInline)
+
 admin.site.register(Cottage, CottageAdmin)
-# admin.site.register(Attribute, AttributeAdmin)
 admin.site.register(Schema, SchemaAdmin)
 admin.site.register(Choice)
 admin.site.register(Category, CategoryAdmin)

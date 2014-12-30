@@ -82,6 +82,10 @@ class DynamicEntityForm(BaseDynamicEntityForm):
 class CottageDynamicForm(DynamicEntityForm):
     model = Cottage
 
+    def is_valid(self):
+        isvalid = super(CottageDynamicForm, self).is_valid()
+        return isvalid
+
 
 class CottageDynamicChildForm(DynamicEntityForm):
     initial_fields = {'structure': Cottage.CHILD}
@@ -89,12 +93,24 @@ class CottageDynamicChildForm(DynamicEntityForm):
         widget=TextInput(attrs={'readonly':'readonly'})
     )
 
+    def clean(self):
+        cleaned_data = super(CottageDynamicChildForm, self).clean()
+        title = cleaned_data.get("title")
+
+        if not title:
+            raise ValidationError("Title is required.")
+        return cleaned_data
+
     def __init__(self, *args, **kwargs):
         initial = kwargs.pop('initial', {})
         for key, val in self.initial_fields.iteritems():
             initial[key] = initial.get(key, None) or val
         kwargs['initial'] = initial
         super(CottageDynamicChildForm, self).__init__(*args, **kwargs)
+
+
+class CottageDynamicCategoryForm(CottageDynamicChildForm):
+    initial_fields = {'structure': Cottage.PARENT}
 
 
 class SchemaForm(BaseSchemaForm):
