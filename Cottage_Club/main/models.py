@@ -3,6 +3,8 @@ import os
 
 from eav.models import BaseAttribute, BaseSchema, BaseChoice, BaseEntity
 
+from tinymce.models import HTMLField
+
 from treebeard.ns_tree import NS_Node
 from treebeard.al_tree import AL_Node
 from mptt.models import MPTTModel, TreeForeignKey
@@ -69,6 +71,7 @@ class MpttTest(MPTTModel):
 
 class Category(NS_Node):
     name = models.CharField(max_length=30)
+    is_separator = models.BooleanField(_("Is separator"), default=False)
     schemas = models.ManyToManyField(Schema, through='SchemaForCategory', related_name='categories')
 
     def __unicode__(self):
@@ -80,13 +83,15 @@ class Category(NS_Node):
 
 
 class Choice(BaseChoice):
-    schema = models.ForeignKey(Schema, related_name='choices')
+    schema = models.ForeignKey(Schema, related_name='choices', limit_choices_to={'datatype__in': [BaseSchema.TYPE_MANY, BaseSchema.TYPE_ONE]})
 
 
 class Attribute(BaseAttribute):
     schema = models.ForeignKey(Schema, related_name='attrs')
     choice = models.ForeignKey(Choice, blank=True, null=True)
     description = models.CharField(max_length=200, blank=True)
+    is_separator = models.BooleanField(_('Will be a separator'), default=False)
+    order = models.IntegerField(_('Order in the list'), default=0)
 
     def __unicode__(self):
         return self.schema.title or self.schema.name
@@ -103,11 +108,9 @@ class Cottage(BaseEntity, AL_Node):
         (PARENT, _('Parent object')),
         (CHILD, _('Inner object'))
     )
-
+    objects = CottageManager()
     attrs = generic.GenericRelation(Attribute, object_id_field='entity_id',
                                     content_type_field='entity_type')
-
-    objects = CottageManager()
     category = models.ForeignKey(
         Category
         , blank=True
@@ -123,6 +126,8 @@ class Cottage(BaseEntity, AL_Node):
     sib_order = models.PositiveIntegerField(default=0)
     title = models.CharField(_('Object title'),
                              max_length=255, blank=True)
+    minimal_price = models.IntegerField(default=0, blank=False, null=False)
+    detailed_description = HTMLField(_('Detailed description'), null=True, blank=True)
     description = models.TextField(_('Description'), blank=True)
 
     is_recommended = models.BooleanField(default=False)
@@ -235,6 +240,13 @@ class Cottage(BaseEntity, AL_Node):
 
 def _upload_path_wrapper(self, filename):
     return self.get_upload_path(filename)
+
+
+class DatePrices(models.Model):
+    start_date = models.DateField(auto_now_add=True)
+    end_date = models.DateField(auto_now_add=True)
+    price = models.IntegerField(default=0)
+    cottage = models.ForeignKey(Cottage, related_name='prices', null=True, blank=True, verbose_name=_('Pricing'))
 
 
 class GenericModelBase(models.Model):

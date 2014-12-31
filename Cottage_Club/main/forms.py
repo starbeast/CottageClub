@@ -1,10 +1,11 @@
 from eav.forms import BaseDynamicEntityForm
 from eav.forms import BaseSchemaForm
 from collections import OrderedDict
-from Cottage_Club.main.models import Cottage, Schema, Image
-from django.forms import ValidationError, ModelForm, CharField, widgets, TextInput
+from Cottage_Club.main.models import Cottage, Schema, Image, Choice, Category
+from django.forms import ValidationError, ModelForm, CharField, widgets, TextInput, ModelChoiceField
 from django.utils.translation import ugettext_lazy as _
 from copy import deepcopy
+from django.utils.encoding import smart_text
 
 
 def image_form_factory(lang='en', debug=False):
@@ -79,12 +80,42 @@ class DynamicEntityForm(BaseDynamicEntityForm):
                 self.initial[schema.name] = value
 
 
+class CustomModelChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return "%s" % obj.title
+
+
+class CustomCategoryModelChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        if obj:
+            categories = []
+            text = "%s" % obj.name
+            if not obj.is_separator:
+                for ancestor in obj.get_ancestors().reverse():
+                    categories.append(ancestor.name)
+                    if ancestor.is_separator:
+                        break
+                if categories:
+                    separator = categories[-1]
+                    categories = u", ".join(map(lambda x: x, categories[:-1]))
+                    text += (_(' in ') + categories if categories else '') + '(' + separator + ')'
+            return smart_text(text)
+
+
 class CottageDynamicForm(DynamicEntityForm):
     model = Cottage
+    category = CustomCategoryModelChoiceField(queryset=Category.objects.all())
 
     def is_valid(self):
         isvalid = super(CottageDynamicForm, self).is_valid()
         return isvalid
+
+
+class MyChoiceAdminForm(ModelForm):
+    schema = CustomModelChoiceField(queryset=Schema.objects.filter(datatype__in=[Schema.TYPE_MANY, Schema.TYPE_ONE]))
+
+    class Meta:
+        model = Choice
 
 
 class CottageDynamicChildForm(DynamicEntityForm):

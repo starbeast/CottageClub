@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'treebeard',
     'storages',
+    'tinymce',
     'mptt',
     'Cottage_Club.main',
 )
@@ -92,6 +93,34 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+TINYMCE_JS_URL = 'https://tinymce.cachefly.net/4.0/tinymce.min.js'
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "paste,searchreplace,table,link,code,autoresize,autosave",
+    'custom_undo_redo_levels': 10,
+    'relative_urls': False,
+    'style_formats_merge': True,
+    'style_formats': [
+        {
+            'title': "Languages",
+            'items': [
+                {'title': 'Bash', 'block': 'pre', 'classes': 'language-bash', 'attributes': {'data-lang': 'bash'}},
+                {'title': 'Python', 'block': 'pre', 'classes': 'language-python', 'attributes': {'data-lang': 'python'}},
+                {'title': 'Ruby', 'block': 'pre', 'classes': 'language-ruby', 'attributes': {'data-lang': 'ruby'}},
+                {'title': 'PHP', 'block': 'pre', 'classes': 'language-php', 'attributes': {'data-lang': 'php'}},
+                {'title': 'C#', 'block': 'pre', 'classes': 'language-csharp', 'attributes': {'data-lang': 'csharp'}},
+                {'title': 'JS', 'block': 'pre', 'classes': 'language-javascript', 'attributes': {'data-lang': 'js'}},
+                {'title': 'Java', 'block': 'pre', 'classes': 'language-java', 'attributes': {'data-lang': 'java'}},
+                {'title': 'JSON', 'block': 'pre', 'classes': 'language-json', 'attributes': {'data-lang': 'json'}},
+            ]
+        },
+        {
+            'title': 'Spoiler', 'block': 'pre', 'classes': 'collapsable'
+        }
+    ]
+}
+TINYMCE_SPELLCHECKER = False
+TINYMCE_COMPRESSOR = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/

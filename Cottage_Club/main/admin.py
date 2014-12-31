@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.contrib.contenttypes.generic import GenericTabularInline
 from treebeard.admin import TreeAdmin
+from django.utils.translation import ugettext_lazy as _
 from django.forms import formsets
 from django.forms.models import BaseInlineFormSet
 from django.utils.safestring import mark_safe
 from treebeard.forms import movenodeform_factory
 from eav.admin import BaseEntityAdmin, BaseSchemaAdmin, BaseEntityInlineFormSet, BaseEntityInline
-from Cottage_Club.main.forms import CottageDynamicCategoryForm, CottageDynamicChildForm, CottageDynamicForm, SchemaForm, image_form_factory
+from Cottage_Club.main.forms import CottageDynamicCategoryForm, CottageDynamicChildForm, CottageDynamicForm, SchemaForm, image_form_factory, MyChoiceAdminForm
 from Cottage_Club.main.models import Category, Cottage, Schema, Choice, Image, Attribute, MpttTest
 from mptt.admin import MPTTModelAdmin, MPTTAdminForm
 from mptt.forms import TreeNodeChoiceField
@@ -46,9 +47,6 @@ class CustomizedMpttAdmin(MPTTModelAdmin):
     inlines = [MPTTTabularInlineAdmin, SchemaForMpttTestInline]
 
 
-# admin.site.register(MpttTest, CustomizedMpttAdmin)
-
-
 class ImagesInline(GenericTabularInline):
     model = Image
     readonly_fields = ('image_tag', )
@@ -64,7 +62,7 @@ class CottageFormSet(BaseEntityInlineFormSet):
 class CottageAdminInline(admin.StackedInline):
     model = Cottage
     form = CottageDynamicCategoryForm
-    exclude = ('sib_order', )
+    exclude = ('sib_order', 'is_banner', 'is_recommended')
     readonly_fields = ('parent', )
     formset = CottageFormSet
     extra = 0
@@ -94,7 +92,7 @@ class CottageAdminInlineCottage(CottageAdminInline):
 class AttributeInline(GenericTabularInline):
     model = Attribute
     extra = 0
-    fields = ('description', )
+    fields = ('description', 'is_separator', 'order')
     ct_field = 'entity_type'
     ct_fk_field = 'entity_id'
 
@@ -197,7 +195,16 @@ class SchemaAdmin(BaseSchemaAdmin):
     inlines = (SchemaForCategoryInline, )
 
 
+class ChoiceAdmin(admin.ModelAdmin):
+    form = MyChoiceAdminForm
+    list_display = ('title', 'schema_name')
+
+    def schema_name(self, obj):
+        return ("%s" % obj.schema.title).capitalize()
+    schema_name.short_description = Schema._meta.verbose_name
+
+
 admin.site.register(Cottage, CottageAdmin)
 admin.site.register(Schema, SchemaAdmin)
-admin.site.register(Choice)
+admin.site.register(Choice, ChoiceAdmin)
 admin.site.register(Category, CategoryAdmin)
