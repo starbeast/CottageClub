@@ -40,6 +40,9 @@ INSTALLED_APPS = (
     'storages',
     'tinymce',
     'mptt',
+    'pipeline',
+    'django_pyscss',
+    'Cottage_Club.compass_pipeline',
     'Cottage_Club.main',
 )
 
@@ -94,6 +97,15 @@ DATABASES = {
     }
 }
 
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "pipeline.finders.FileSystemFinder",
+    "pipeline.finders.AppDirectoriesFinder",
+    "pipeline.finders.CachedFileFinder",
+    "pipeline.finders.PipelineFinder",
+)
+
 TINYMCE_JS_URL = 'https://tinymce.cachefly.net/4.0/tinymce.min.js'
 TINYMCE_DEFAULT_CONFIG = {
     'plugins': "paste,searchreplace,table,link,code,autoresize,autosave",
@@ -135,7 +147,28 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_ROOT = '%s/../../static/' % ROOT_PATH
+STATIC_ROOT = '%s/../static/' % ROOT_PATH
+
+PIPELINE_CSS = {
+    'common': {
+        'source_filenames': (
+            'styles/fonts.scss',
+            'styles/common.scss',
+        ),
+        'output_filename': 'css/common.css',
+        'extra_context': {
+            'media': 'screen,projection',
+        },
+    }
+}
+
+
+PIPELINE_ENABLED = not DEBUG
+PIPELINE_CSS_COMPRESSOR = None
+STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+PIPELINE_COMPILERS = (
+    'Cottage_Club.compass_pipeline.compiler.CompassCompiler',
+)
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"

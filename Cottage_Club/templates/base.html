@@ -1,0 +1,82 @@
+{% load pipeline %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Next Caller{% endblock %}</title>
+        {% block meta-description %}
+            <meta name="description" content="Next Caller let's you skip the hold line when calling customer service. Sign up today (Free) and we'll make sure you'll never have to spell your name and address when calling customer service."/>
+        {% endblock %}
+        {% block page-meta %}
+            <meta name="keywords" content="next caller, skip the hold line, customer service tools, customer support solutions,  click 2 call services, click 2 call, customer service sucks, API, call center API, call center solutions, call center application, next caller priority support">
+            <meta content="index, follow" name="robots" />
+            <meta content="GLOBAL" name="distribution" />
+            <meta content="SAFE FOR KIDS" name="rating" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta property="Customer Service & Support Solutions - Next Caller" />
+            <meta content="text/html;charset=UTF-8" http-equiv="content-type"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=0.9">
+            <meta property="og:image" content="{% static 'img/dev/icon.png' %}" />
+            <meta property="og:type" content="article"/>
+            <meta property="og:site_name" content="Next Caller"/>
+            <meta property="og:title" content="Advanced Caller ID"/>
+{#            <meta name="description" content="Next Caller let's you skip the hold line when calling customer service. Sign up today (Free).">#}
+        {% endblock %}
+
+        {% block styles %}
+            {% stylesheet 'common' %}
+        {% endblock %}
+    </head>
+    <body id="{% block page_id %}{% endblock %}" class="{% block extra_body_classes %}{% endblock %}">
+        {% spaceless %}
+        <div class="header">
+            <div class="logo-container">
+                <img class="logo" src="{% static 'images/logo.svg' %}" alt=""/>
+                <div class="logo-text">Будьте ближе к природе</div>
+            </div>
+            <div class="header-image"></div>
+        </div>
+        <div class="nav-links-container">
+            <ul class="nav-links container">
+                <li class="nav-link"><a href="">Главная</a></li>
+                <li class="nav-link"><a href="">Беларусь</a></li>
+                <li class="nav-link"><a href="">Подмосковье</a></li>
+                <li class="nav-link"><a href="">Селигер</a></li>
+                <li class="nav-link"><a href="">Крым</a></li>
+                <li class="nav-link"><a href="">Контакты</a></li>
+                <li class="nav-link"><a href="">Оплата тура</a></li>
+            </ul>
+        </div>
+        {% endspaceless %}
+        <script type="text/javascript">
+            // IE9 fix
+            if (!window.console) (function() {
+
+                var __console, Console;
+
+                Console = function() {
+                    var check = setInterval(function() {
+                        var f;
+                        if (window.console && console.log && !console.__buffer) {
+                            clearInterval(check);
+                            f = (Function.prototype.bind) ? Function.prototype.bind.call(console.log, console) : console.log;
+                            for (var i = 0; i < __console.__buffer.length; i++) f.apply(console, __console.__buffer[i]);
+                        }
+                    }, 1000);
+
+                    function log() {
+                        this.__buffer.push(arguments);
+                    }
+
+                    this.log = log;
+                    this.error = log;
+                    this.info = log;
+                    this.warn = log;
+                    this.__buffer = [];
+                };
+
+                __console = window.console = new Console();
+            })();
+        </script>
+    </body>
+</html>

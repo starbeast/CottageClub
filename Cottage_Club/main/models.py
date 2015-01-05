@@ -8,8 +8,11 @@ from tinymce.models import HTMLField
 from treebeard.ns_tree import NS_Node
 from treebeard.al_tree import AL_Node
 from mptt.models import MPTTModel, TreeForeignKey
+from django.template.defaultfilters import slugify
 
 from django.core.files.storage import FileSystemStorage as OverwriteStorage
+
+from autoslug.fields import AutoSlugField
 
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
@@ -125,7 +128,9 @@ class Cottage(BaseEntity, AL_Node):
         verbose_name=_("Parent object"))
     sib_order = models.PositiveIntegerField(default=0)
     title = models.CharField(_('Object title'),
-                             max_length=255, blank=True)
+                             max_length=255, blank=False)
+    slug = AutoSlugField(null=True, populate_from='title', unique_with='category'
+                         , manager=objects, blank=True, editable=False)
     minimal_price = models.IntegerField(default=0, blank=False, null=False)
     detailed_description = HTMLField(_('Detailed description'), null=True, blank=True)
     description = models.TextField(_('Description'), blank=True)
@@ -149,6 +154,7 @@ class Cottage(BaseEntity, AL_Node):
 
     def __unicode__(self):
         return self.title
+
 
     @property
     def cat(self):

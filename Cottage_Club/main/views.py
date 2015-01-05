@@ -24,3 +24,5 @@ def get_category_for_parent(request):
         return HttpResponse(content=result, content_type='application/json')
     else:
         return HttpResponseBadRequest()
+
+

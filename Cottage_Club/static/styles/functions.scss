@@ -1,0 +1,10 @@
+@import "common_variables";
+
+@function em($target, $rem, $context: $base-font-size) {
+    @if $target == 0 { @return 0 }
+    @if $rem == false {
+      @return $target / $context + 0em;
+    } @else {
+      @return $target / $context + 0rem;
+    }
+}

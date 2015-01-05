@@ -3,7 +3,9 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import autoslug.fields
+import mptt.fields
 import django.core.files.storage
+import tinymce.models
 import Cottage_Club.main.models
 
 
@@ -26,12 +28,12 @@ class Migration(migrations.Migration):
                 ('value_range_min', models.FloatField(null=True, blank=True)),
                 ('value_range_max', models.FloatField(null=True, blank=True)),
                 ('description', models.CharField(max_length=200, blank=True)),
+                ('is_separator', models.BooleanField(default=False, verbose_name='Will be a separator')),
+                ('order', models.IntegerField(default=0, verbose_name='Order in the list')),
             ],
             options={
-                'ordering': ['entity_type', 'entity_id', 'schema'],
-                'abstract': False,
-                'verbose_name': 'attribute',
-                'verbose_name_plural': 'attributes',
+                'verbose_name': 'Attribute value',
+                'verbose_name_plural': 'Attribute values',
             },
             bases=(models.Model,),
         ),
@@ -44,6 +46,7 @@ class Migration(migrations.Migration):
                 ('tree_id', models.PositiveIntegerField(db_index=True)),
                 ('depth', models.PositiveIntegerField(db_index=True)),
                 ('name', models.CharField(max_length=30)),
+                ('is_separator', models.BooleanField(default=False, verbose_name='Is separator')),
             ],
             options={
                 'verbose_name': 'Category',
@@ -70,6 +73,8 @@ class Migration(migrations.Migration):
                 ('structure', models.CharField(default=b'parent', max_length=10, verbose_name='Object structure', choices=[(b'parent', 'Parent object'), (b'child', 'Inner object')])),
                 ('sib_order', models.PositiveIntegerField(default=0)),
                 ('title', models.CharField(max_length=255, verbose_name='Object title', blank=True)),
+                ('minimal_price', models.IntegerField(default=0)),
+                ('detailed_description', tinymce.models.HTMLField(null=True, verbose_name='Detailed description', blank=True)),
                 ('description', models.TextField(verbose_name='Description', blank=True)),
                 ('is_recommended', models.BooleanField(default=False)),
                 ('is_banner', models.BooleanField(default=False)),
@@ -83,6 +88,19 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
+            name='DatePrices',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('start_date', models.DateField(auto_now_add=True)),
+                ('end_date', models.DateField(auto_now_add=True)),
+                ('price', models.IntegerField(default=0)),
+                ('cottage', models.ForeignKey(related_name='prices', verbose_name='Pricing', blank=True, to='main.Cottage', null=True)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='Image',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -90,12 +108,28 @@ class Migration(migrations.Migration):
                 ('caption', models.TextField(null=True, verbose_name='Caption', blank=True)),
                 ('is_main', models.BooleanField(default=False, verbose_name='Main image')),
                 ('order', models.IntegerField(default=0, verbose_name='Order')),
-                ('image', models.ImageField(default=b'images/default_product.jpg', upload_to=b'cottage_images', storage=django.core.files.storage.FileSystemStorage(), verbose_name='Image')),
+                ('image', models.ImageField(default=b'images/default_product.png', upload_to=b'cottage_images', storage=django.core.files.storage.FileSystemStorage(), verbose_name='Image')),
                 ('content_type', models.ForeignKey(to='contenttypes.ContentType')),
             ],
             options={
             },
             bases=(models.Model, Cottage_Club.main.models.ImageContainingModel),
+        ),
+        migrations.CreateModel(
+            name='MpttTest',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=30)),
+                ('lft', models.PositiveIntegerField(editable=False, db_index=True)),
+                ('rght', models.PositiveIntegerField(editable=False, db_index=True)),
+                ('tree_id', models.PositiveIntegerField(editable=False, db_index=True)),
+                ('level', models.PositiveIntegerField(editable=False, db_index=True)),
+                ('parent', mptt.fields.TreeForeignKey(related_name='children', blank=True, to='main.MpttTest', null=True)),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Schema',
@@ -131,9 +165,34 @@ class Migration(migrations.Migration):
             },
             bases=(models.Model,),
         ),
+        migrations.CreateModel(
+            name='SchemaForMpttTest',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('will_be_a_filter', models.BooleanField(default=False)),
+                ('name_on_forms', models.CharField(max_length=100, blank=True)),
+                ('mptttest', models.ForeignKey(to='main.MpttTest')),
+                ('schema', models.ForeignKey(to='main.Schema')),
+            ],
+            options={
+                'verbose_name': 'Attribute of MPTT',
+                'verbose_name_plural': 'Attributes of MPTT',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AlterUniqueTogether(
+            name='schemaformptttest',
+            unique_together=set([('schema', 'mptttest')]),
+        ),
         migrations.AlterUniqueTogether(
             name='schemaforcategory',
             unique_together=set([('schema', 'category')]),
+        ),
+        migrations.AddField(
+            model_name='mptttest',
+            name='schemas',
+            field=models.ManyToManyField(related_name='mptts', through='main.SchemaForMpttTest', to='main.Schema'),
+            preserve_default=True,
         ),
         migrations.AddField(
             model_name='choice',
@@ -164,9 +223,5 @@ class Migration(migrations.Migration):
             name='schema',
             field=models.ForeignKey(related_name='attrs', to='main.Schema'),
             preserve_default=True,
-        ),
-        migrations.AlterUniqueTogether(
-            name='attribute',
-            unique_together=set([('entity_type', 'entity_id', 'schema', 'choice')]),
         ),
     ]

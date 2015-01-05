@@ -1,0 +1,7 @@
+@mixin transition($transition-time, $transition-property: "all", $method: "ease-in-out") {
+    -webkit-transition: unquote($transition-property) $transition-time unquote($method);
+    -moz-transition: unquote($transition-property) $transition-time unquote($method);
+    -ms-transition: unquote($transition-property) $transition-time unquote($method);
+    -o-transition: unquote($transition-property) $transition-time unquote($method);
+    transition: unquote($transition-property) $transition-time unquote($method);
+}
