@@ -1,1 +1,676 @@
-[{"fields": {"model": "logentry", "name": "log entry", "app_label": "admin"}, "model": "contenttypes.contenttype", "pk": 1}, {"fields": {"model": "permission", "name": "permission", "app_label": "auth"}, "model": "contenttypes.contenttype", "pk": 2}, {"fields": {"model": "group", "name": "group", "app_label": "auth"}, "model": "contenttypes.contenttype", "pk": 3}, {"fields": {"model": "user", "name": "user", "app_label": "auth"}, "model": "contenttypes.contenttype", "pk": 4}, {"fields": {"model": "contenttype", "name": "content type", "app_label": "contenttypes"}, "model": "contenttypes.contenttype", "pk": 5}, {"fields": {"model": "session", "name": "session", "app_label": "sessions"}, "model": "contenttypes.contenttype", "pk": 6}, {"fields": {"model": "schema", "name": "Attribute", "app_label": "main"}, "model": "contenttypes.contenttype", "pk": 7}, {"fields": {"model": "category", "name": "Category", "app_label": "main"}, "model": "contenttypes.contenttype", "pk": 8}, {"fields": {"model": "choice", "name": "choice", "app_label": "main"}, "model": "contenttypes.contenttype", "pk": 9}, {"fields": {"model": "attribute", "name": "attribute", "app_label": "main"}, "model": "contenttypes.contenttype", "pk": 10}, {"fields": {"model": "cottage", "name": "cottage", "app_label": "main"}, "model": "contenttypes.contenttype", "pk": 11}, {"fields": {"model": "image", "name": "image", "app_label": "main"}, "model": "contenttypes.contenttype", "pk": 12}, {"fields": {"model": "schemaforcategory", "name": "Attribute of Category", "app_label": "main"}, "model": "contenttypes.contenttype", "pk": 13}, {"fields": {"model": "mptttest", "name": "mptt test", "app_label": "main"}, "model": "contenttypes.contenttype", "pk": 14}, {"fields": {"model": "schemaformptttest", "name": "Attribute of MPTT", "app_label": "main"}, "model": "contenttypes.contenttype", "pk": 15}, {"fields": {"model": "dateprices", "name": "date prices", "app_label": "main"}, "model": "contenttypes.contenttype", "pk": 16}, {"fields": {"expire_date": "2015-01-12T09:28:27Z", "session_data": "NDc2ZTI3NjAyNDY1ZDkzNWQ3ZjVhODJmMjA3ZjliMGIwYWIwMDVmMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjkwNzU4NWI3ZDhiMzNjMjc4Njk1NDgzODc2ZGVhNzc4YzE2MTE5MjIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9"}, "model": "sessions.session", "pk": "zn2o1ps4omc390abbr6xekh2bg5y7vka"}, {"fields": {"sortable": false, "name": "arrival_date", "title": "\u0414\u0430\u0442\u0430 \u0437\u0430\u0435\u0437\u0434\u0430", "datatype": "date", "required": false, "searched": true, "help_text": "\u0414\u0430\u0442\u0430 \u0437\u0430\u0435\u0437\u0434\u0430", "filtered": false}, "model": "main.schema", "pk": 3}, {"fields": {"sortable": false, "name": "departure_date", "title": "\u0414\u0430\u0442\u0430 \u043e\u0442\u044a\u0435\u0437\u0434\u0430", "datatype": "date", "required": false, "searched": true, "help_text": "\u0414\u0430\u0442\u0430 \u043e\u0442\u044a\u0435\u0437\u0434\u0430", "filtered": false}, "model": "main.schema", "pk": 4}, {"fields": {"sortable": false, "name": "highway", "title": "\u0428\u043e\u0441\u0441\u0435", "datatype": "one", "required": false, "searched": true, "help_text": "\u0428\u043e\u0441\u0441\u0435, \u043f\u043e \u043a\u043e\u0442\u043e\u0440\u043e\u043c\u0443 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d \u043e\u0431\u044a\u0435\u043a\u0442", "filtered": false}, "model": "main.schema", "pk": 5}, {"fields": {"sortable": false, "name": "bathhouse", "title": "\u0411\u0430\u043d\u044f", "datatype": "bool", "required": false, "searched": true, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0431\u0430\u043d\u0438", "filtered": false}, "model": "main.schema", "pk": 6}, {"fields": {"sortable": false, "name": "spa", "title": "SPA", "datatype": "bool", "required": false, "searched": true, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 SPA", "filtered": false}, "model": "main.schema", "pk": 7}, {"fields": {"sortable": false, "name": "sports_equipment", "title": "\u0421\u043f\u043e\u0440\u0442\u0438\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044c", "datatype": "bool", "required": false, "searched": true, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0441\u043f\u043e\u0440\u0442\u0438\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044f", "filtered": false}, "model": "main.schema", "pk": 8}, {"fields": {"sortable": false, "name": "swimming_pool", "title": "\u0411\u0430\u0441\u0441\u0435\u0439\u043d", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0431\u0430\u0441\u0441\u0435\u0439\u043d\u0430", "filtered": false}, "model": "main.schema", "pk": 9}, {"fields": {"sortable": false, "name": "horse_club", "title": "\u041a\u043e\u043d\u043d\u044b\u0439 \u043a\u043b\u0443\u0431", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u043a\u043e\u043d\u043d\u043e\u0433\u043e \u043a\u043b\u0443\u0431\u0430", "filtered": false}, "model": "main.schema", "pk": 10}, {"fields": {"sortable": false, "name": "billiards", "title": "\u0411\u0438\u043b\u044c\u044f\u0440\u0434", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0431\u0438\u043b\u044c\u044f\u0440\u0434\u0430", "filtered": false}, "model": "main.schema", "pk": 11}, {"fields": {"sortable": false, "name": "saunabathouse", "title": "\u0421\u0430\u0443\u043d\u0430/\u0411\u0430\u0441\u0441\u0435\u0439\u043d", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0441\u0430\u0443\u043d\u044b/\u0431\u0430\u0441\u0441\u0435\u0439\u043d\u0430", "filtered": false}, "model": "main.schema", "pk": 12}, {"fields": {"sortable": false, "name": "kitchen", "title": "\u041a\u0443\u0445\u043d\u044f", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u043a\u0443\u0445\u043d\u0438", "filtered": false}, "model": "main.schema", "pk": 13}, {"fields": {"sortable": false, "name": "snowmobileatv", "title": "\u041a\u0432\u0430\u0434\u0440\u043e\u0446\u0438\u043a\u043b\u044b/\u0421\u043d\u0435\u0433\u043e\u0445\u043e\u0434\u044b", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0441\u043d\u0435\u0433\u043e\u0445\u043e\u0434\u043e\u0432 \u0438 \u043a\u0432\u0430\u0434\u0440\u0430\u0446\u0438\u043a\u043b\u043e\u0432", "filtered": false}, "model": "main.schema", "pk": 14}, {"fields": {"sortable": false, "name": "distance", "title": "\u0420\u0430\u0441\u0441\u0442\u043e\u044f\u043d\u0438\u0435 \u043e\u0442 \u0448\u043e\u0441\u0441\u0435", "datatype": "one", "required": false, "searched": false, "help_text": "\u0420\u0430\u0441\u0441\u0442\u043e\u044f\u043d\u0438\u0435 \u043e\u0442 \u0448\u043e\u0441\u0441\u0435 \u0434\u043e \u043e\u0431\u044a\u0435\u043a\u0442\u0430", "filtered": false}, "model": "main.schema", "pk": 15}, {"fields": {"sortable": false, "name": "capacity", "title": "\u0412\u043c\u0435\u0441\u0442\u0438\u043c\u043e\u0441\u0442\u044c", "datatype": "many", "required": false, "searched": false, "help_text": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u0433\u043e\u0441\u0442\u0435\u0439 \u043c\u043e\u0436\u0435\u0442 \u043f\u0440\u0438\u043d\u044f\u0442\u044c \u043e\u0431\u044a\u0435\u043a\u0442", "filtered": false}, "model": "main.schema", "pk": 16}, {"fields": {"sortable": false, "name": "region", "title": "\u041e\u0431\u043b\u0430\u0441\u0442\u044c", "datatype": "one", "required": false, "searched": false, "help_text": "\u0412 \u043a\u0430\u043a\u043e\u0439 \u043e\u0431\u043b\u0430\u0441\u0442\u0438 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d \u043e\u0431\u044a\u0435\u043a\u0442", "filtered": false}, "model": "main.schema", "pk": 17}, {"fields": {"sortable": false, "name": "fireplace", "title": "\u041a\u0430\u043c\u0438\u043d", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u043a\u0430\u043c\u0438\u043d\u0430", "filtered": false}, "model": "main.schema", "pk": 18}, {"fields": {"sortable": false, "name": "pond", "title": "\u0412\u043e\u0434\u043e\u0435\u043c", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0432\u043e\u0434\u043e\u0435\u043c\u0430", "filtered": false}, "model": "main.schema", "pk": 19}, {"fields": {"sortable": false, "name": "pet_friendly", "title": "\u0412\u044a\u0435\u0437\u0434 \u0441 \u0436\u0438\u0432\u043e\u0442\u043d\u044b\u043c\u0438", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u043b\u0438 \u043e\u0431\u044a\u0435\u043a\u0442 \u043d\u0430\u043b\u0438\u0447\u0438\u0435 \u0434\u043e\u043c\u0430\u0448\u043d\u0438\u0445 \u0436\u0438\u0432\u043e\u0442\u043d\u044b\u0445", "filtered": false}, "model": "main.schema", "pk": 20}, {"fields": {"sortable": false, "name": "three_meals_day", "title": "\u0422\u0440\u0435\u0445\u0440\u0430\u0437\u043e\u0432\u043e\u0435 \u043f\u0438\u0442\u0430\u043d\u0438\u0435", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u043b\u0438 \u043e\u0431\u044a\u0435\u043a\u0442 \u0442\u0440\u0435\u0445\u0440\u0430\u0437\u043e\u0432\u043e\u0435 \u043f\u0438\u0442\u0430\u043d\u0438\u0435", "filtered": false}, "model": "main.schema", "pk": 21}, {"fields": {"sortable": false, "name": "meals", "title": "\u041f\u0438\u0442\u0430\u043d\u0438\u0435", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u043b\u0438 \u043e\u0431\u044a\u0435\u043a\u0442 \u043f\u0438\u0442\u0430\u043d\u0438\u0435", "filtered": false}, "model": "main.schema", "pk": 22}, {"fields": {"sortable": false, "name": "boat_rental", "title": "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a", "datatype": "bool", "required": false, "searched": false, "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0430\u0440\u0435\u043d\u0434\u044b \u043b\u043e\u0434\u043e\u043a", "filtered": false}, "model": "main.schema", "pk": 23}, {"fields": {"sortable": false, "name": "set_of_treatments", "title": "\u041d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u043b\u0435\u0447\u0435\u043d\u0438\u044f", "datatype": "many", "required": false, "searched": false, "help_text": "\u041d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u043b\u0435\u0447\u0435\u043d\u0438\u044f \u0432 \u043e\u0431\u044a\u0435\u043a\u0442\u0435", "filtered": false}, "model": "main.schema", "pk": 24}, {"fields": {"rght": 22, "name": "dsfasdfdsaf", "parent": null, "level": 0, "lft": 1, "tree_id": 1}, "model": "main.mptttest", "pk": 1}, {"fields": {"rght": 17, "name": "dfasdfad", "parent": 1, "level": 1, "lft": 2, "tree_id": 1}, "model": "main.mptttest", "pk": 2}, {"fields": {"rght": 21, "name": "gfdgfdg", "parent": 1, "level": 1, "lft": 20, "tree_id": 1}, "model": "main.mptttest", "pk": 3}, {"fields": {"rght": 19, "name": "gdfgfdg", "parent": 1, "level": 1, "lft": 18, "tree_id": 1}, "model": "main.mptttest", "pk": 4}, {"fields": {"rght": 16, "name": "sdfad", "parent": 2, "level": 2, "lft": 15, "tree_id": 1}, "model": "main.mptttest", "pk": 5}, {"fields": {"rght": 4, "name": "fdsfa", "parent": 2, "level": 2, "lft": 3, "tree_id": 1}, "model": "main.mptttest", "pk": 6}, {"fields": {"rght": 14, "name": "fdsfad", "parent": 2, "level": 2, "lft": 5, "tree_id": 1}, "model": "main.mptttest", "pk": 7}, {"fields": {"rght": 13, "name": "sdfasdf", "parent": 7, "level": 3, "lft": 12, "tree_id": 1}, "model": "main.mptttest", "pk": 8}, {"fields": {"rght": 11, "name": "sdfaf", "parent": 7, "level": 3, "lft": 10, "tree_id": 1}, "model": "main.mptttest", "pk": 9}, {"fields": {"rght": 9, "name": "fsdfsad", "parent": 7, "level": 3, "lft": 8, "tree_id": 1}, "model": "main.mptttest", "pk": 10}, {"fields": {"rght": 7, "name": "fsadfadf", "parent": 7, "level": 3, "lft": 6, "tree_id": 1}, "model": "main.mptttest", "pk": 11}, {"fields": {"rgt": 28, "name": "\u0420\u0435\u0433\u0438\u043e\u043d\u044b", "is_separator": true, "lft": 1, "depth": 1, "tree_id": 1}, "model": "main.category", "pk": 1}, {"fields": {"rgt": 27, "name": "\u0421\u0435\u043b\u0438\u0433\u0435\u0440", "is_separator": true, "lft": 20, "depth": 2, "tree_id": 1}, "model": "main.category", "pk": 2}, {"fields": {"rgt": 19, "name": "\u041f\u043e\u0434\u043c\u043e\u0441\u043a\u043e\u0432\u044c\u0435", "is_separator": true, "lft": 12, "depth": 2, "tree_id": 1}, "model": "main.category", "pk": 3}, {"fields": {"rgt": 3, "name": "\u041a\u0440\u044b\u043c", "is_separator": true, "lft": 2, "depth": 2, "tree_id": 1}, "model": "main.category", "pk": 4}, {"fields": {"rgt": 11, "name": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c", "is_separator": true, "lft": 4, "depth": 2, "tree_id": 1}, "model": "main.category", "pk": 5}, {"fields": {"rgt": 10, "name": "\u0414\u043e\u043c\u0430 \u043e\u0442\u0434\u044b\u0445\u0430", "is_separator": false, "lft": 9, "depth": 3, "tree_id": 1}, "model": "main.category", "pk": 6}, {"fields": {"rgt": 8, "name": "\u0421\u0430\u043d\u0430\u0442\u043e\u0440\u0438\u0438", "is_separator": false, "lft": 7, "depth": 3, "tree_id": 1}, "model": "main.category", "pk": 7}, {"fields": {"rgt": 6, "name": "\u041a\u043e\u0442\u0442\u0435\u0434\u0436\u0438", "is_separator": false, "lft": 5, "depth": 3, "tree_id": 1}, "model": "main.category", "pk": 8}, {"fields": {"rgt": 26, "name": "\u041a\u043e\u0442\u0442\u0435\u0434\u0436\u0438", "is_separator": false, "lft": 25, "depth": 3, "tree_id": 1}, "model": "main.category", "pk": 9}, {"fields": {"rgt": 24, "name": "\u041f\u0430\u043d\u0441\u0438\u043e\u043d\u0430\u0442\u044b", "is_separator": false, "lft": 23, "depth": 3, "tree_id": 1}, "model": "main.category", "pk": 10}, {"fields": {"rgt": 22, "name": "\u0411\u0430\u0437\u044b \u043e\u0442\u0434\u044b\u0445\u0430", "is_separator": false, "lft": 21, "depth": 3, "tree_id": 1}, "model": "main.category", "pk": 11}, {"fields": {"rgt": 18, "name": "\u0414\u043e\u043c\u0430 \u043e\u0442\u0434\u044b\u0445\u0430", "is_separator": false, "lft": 17, "depth": 3, "tree_id": 1}, "model": "main.category", "pk": 12}, {"fields": {"rgt": 16, "name": "\u041a\u043e\u0442\u0442\u0435\u0434\u0436\u0438", "is_separator": false, "lft": 15, "depth": 3, "tree_id": 1}, "model": "main.category", "pk": 13}, {"fields": {"rgt": 14, "name": "\u0421\u0430\u043d\u0430\u0442\u043e\u0440\u0438\u0438", "is_separator": false, "lft": 13, "depth": 3, "tree_id": 1}, "model": "main.category", "pk": 14}, {"fields": {"schema": 17, "title": "\u0412\u0438\u0442\u0435\u0431\u0441\u043a\u0430\u044f \u043e\u0431\u043b."}, "model": "main.choice", "pk": 1}, {"fields": {"schema": 17, "title": "\u041c\u0438\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b."}, "model": "main.choice", "pk": 2}, {"fields": {"schema": 17, "title": "\u0413\u043e\u043c\u0435\u043b\u044c\u0441\u043a\u0430\u044f \u043e\u0431\u043b."}, "model": "main.choice", "pk": 3}, {"fields": {"schema": 17, "title": "\u0411\u0440\u0435\u0441\u0442\u0441\u043a\u0430\u044f \u043e\u0431\u043b."}, "model": "main.choice", "pk": 4}, {"fields": {"schema": 17, "title": "\u041c\u043e\u0433\u0438\u043b\u0435\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b."}, "model": "main.choice", "pk": 5}, {"fields": {"schema": 17, "title": "\u0413\u0440\u043e\u0434\u043d\u0435\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b."}, "model": "main.choice", "pk": 6}, {"fields": {"codename": "add_logentry", "name": "Can add log entry", "content_type": 1}, "model": "auth.permission", "pk": 1}, {"fields": {"codename": "change_logentry", "name": "Can change log entry", "content_type": 1}, "model": "auth.permission", "pk": 2}, {"fields": {"codename": "delete_logentry", "name": "Can delete log entry", "content_type": 1}, "model": "auth.permission", "pk": 3}, {"fields": {"codename": "add_permission", "name": "Can add permission", "content_type": 2}, "model": "auth.permission", "pk": 4}, {"fields": {"codename": "change_permission", "name": "Can change permission", "content_type": 2}, "model": "auth.permission", "pk": 5}, {"fields": {"codename": "delete_permission", "name": "Can delete permission", "content_type": 2}, "model": "auth.permission", "pk": 6}, {"fields": {"codename": "add_group", "name": "Can add group", "content_type": 3}, "model": "auth.permission", "pk": 7}, {"fields": {"codename": "change_group", "name": "Can change group", "content_type": 3}, "model": "auth.permission", "pk": 8}, {"fields": {"codename": "delete_group", "name": "Can delete group", "content_type": 3}, "model": "auth.permission", "pk": 9}, {"fields": {"codename": "add_user", "name": "Can add user", "content_type": 4}, "model": "auth.permission", "pk": 10}, {"fields": {"codename": "change_user", "name": "Can change user", "content_type": 4}, "model": "auth.permission", "pk": 11}, {"fields": {"codename": "delete_user", "name": "Can delete user", "content_type": 4}, "model": "auth.permission", "pk": 12}, {"fields": {"codename": "add_contenttype", "name": "Can add content type", "content_type": 5}, "model": "auth.permission", "pk": 13}, {"fields": {"codename": "change_contenttype", "name": "Can change content type", "content_type": 5}, "model": "auth.permission", "pk": 14}, {"fields": {"codename": "delete_contenttype", "name": "Can delete content type", "content_type": 5}, "model": "auth.permission", "pk": 15}, {"fields": {"codename": "add_session", "name": "Can add session", "content_type": 6}, "model": "auth.permission", "pk": 16}, {"fields": {"codename": "change_session", "name": "Can change session", "content_type": 6}, "model": "auth.permission", "pk": 17}, {"fields": {"codename": "delete_session", "name": "Can delete session", "content_type": 6}, "model": "auth.permission", "pk": 18}, {"fields": {"codename": "add_schema", "name": "Can add Attribute", "content_type": 7}, "model": "auth.permission", "pk": 19}, {"fields": {"codename": "change_schema", "name": "Can change Attribute", "content_type": 7}, "model": "auth.permission", "pk": 20}, {"fields": {"codename": "delete_schema", "name": "Can delete Attribute", "content_type": 7}, "model": "auth.permission", "pk": 21}, {"fields": {"codename": "add_category", "name": "Can add Category", "content_type": 8}, "model": "auth.permission", "pk": 22}, {"fields": {"codename": "change_category", "name": "Can change Category", "content_type": 8}, "model": "auth.permission", "pk": 23}, {"fields": {"codename": "delete_category", "name": "Can delete Category", "content_type": 8}, "model": "auth.permission", "pk": 24}, {"fields": {"codename": "add_choice", "name": "Can add choice", "content_type": 9}, "model": "auth.permission", "pk": 25}, {"fields": {"codename": "change_choice", "name": "Can change choice", "content_type": 9}, "model": "auth.permission", "pk": 26}, {"fields": {"codename": "delete_choice", "name": "Can delete choice", "content_type": 9}, "model": "auth.permission", "pk": 27}, {"fields": {"codename": "add_attribute", "name": "Can add attribute", "content_type": 10}, "model": "auth.permission", "pk": 28}, {"fields": {"codename": "change_attribute", "name": "Can change attribute", "content_type": 10}, "model": "auth.permission", "pk": 29}, {"fields": {"codename": "delete_attribute", "name": "Can delete attribute", "content_type": 10}, "model": "auth.permission", "pk": 30}, {"fields": {"codename": "add_cottage", "name": "Can add cottage", "content_type": 11}, "model": "auth.permission", "pk": 31}, {"fields": {"codename": "change_cottage", "name": "Can change cottage", "content_type": 11}, "model": "auth.permission", "pk": 32}, {"fields": {"codename": "delete_cottage", "name": "Can delete cottage", "content_type": 11}, "model": "auth.permission", "pk": 33}, {"fields": {"codename": "add_image", "name": "Can add image", "content_type": 12}, "model": "auth.permission", "pk": 34}, {"fields": {"codename": "change_image", "name": "Can change image", "content_type": 12}, "model": "auth.permission", "pk": 35}, {"fields": {"codename": "delete_image", "name": "Can delete image", "content_type": 12}, "model": "auth.permission", "pk": 36}, {"fields": {"codename": "add_schemaforcategory", "name": "Can add Attribute of Category", "content_type": 13}, "model": "auth.permission", "pk": 37}, {"fields": {"codename": "change_schemaforcategory", "name": "Can change Attribute of Category", "content_type": 13}, "model": "auth.permission", "pk": 38}, {"fields": {"codename": "delete_schemaforcategory", "name": "Can delete Attribute of Category", "content_type": 13}, "model": "auth.permission", "pk": 39}, {"fields": {"codename": "add_mptttest", "name": "Can add mptt test", "content_type": 14}, "model": "auth.permission", "pk": 40}, {"fields": {"codename": "change_mptttest", "name": "Can change mptt test", "content_type": 14}, "model": "auth.permission", "pk": 41}, {"fields": {"codename": "delete_mptttest", "name": "Can delete mptt test", "content_type": 14}, "model": "auth.permission", "pk": 42}, {"fields": {"codename": "add_schemaformptttest", "name": "Can add Attribute of MPTT", "content_type": 15}, "model": "auth.permission", "pk": 43}, {"fields": {"codename": "change_schemaformptttest", "name": "Can change Attribute of MPTT", "content_type": 15}, "model": "auth.permission", "pk": 44}, {"fields": {"codename": "delete_schemaformptttest", "name": "Can delete Attribute of MPTT", "content_type": 15}, "model": "auth.permission", "pk": 45}, {"fields": {"codename": "add_dateprices", "name": "Can add date prices", "content_type": 16}, "model": "auth.permission", "pk": 46}, {"fields": {"codename": "change_dateprices", "name": "Can change date prices", "content_type": 16}, "model": "auth.permission", "pk": 47}, {"fields": {"codename": "delete_dateprices", "name": "Can delete date prices", "content_type": 16}, "model": "auth.permission", "pk": 48}, {"fields": {"username": "admin", "first_name": "", "last_name": "", "is_active": true, "is_superuser": true, "is_staff": true, "last_login": "2014-12-29T09:28:27Z", "groups": [], "user_permissions": [], "password": "pbkdf2_sha256$12000$OoAl3Rs0EN8K$FePRQa2m1lOpNj6g052z9U7vGsU0/3ij85RupoELMpc=", "email": "bcdkey@gmail.com", "date_joined": "2014-12-29T09:26:22Z"}, "model": "auth.user", "pk": 1}, {"fields": {"action_flag": 1, "action_time": "2014-12-29T09:29:03Z", "object_repr": "\u0420\u0435\u0433\u0438\u043e\u043d\u044b", "object_id": "1", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 1}, {"fields": {"action_flag": 1, "action_time": "2014-12-29T09:29:14Z", "object_repr": "\u0421\u0435\u043b\u0438\u0433\u0435\u0440", "object_id": "2", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 2}, {"fields": {"action_flag": 1, "action_time": "2014-12-29T09:29:28Z", "object_repr": "\u041f\u043e\u0434\u043c\u043e\u0441\u043a\u043e\u0432\u044c\u0435", "object_id": "3", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 3}, {"fields": {"action_flag": 1, "action_time": "2014-12-29T09:29:36Z", "object_repr": "\u041a\u0440\u044b\u043c", "object_id": "4", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 4}, {"fields": {"action_flag": 1, "action_time": "2014-12-29T09:29:51Z", "object_repr": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c", "object_id": "5", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 5}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T09:32:10Z", "object_repr": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c", "object_id": "5", "change_message": "No fields changed.", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 6}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T09:32:48Z", "object_repr": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c", "object_id": "5", "change_message": "No fields changed.", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 7}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T09:35:55Z", "object_repr": "\u041f\u043e\u0434\u043c\u043e\u0441\u043a\u043e\u0432\u044c\u0435", "object_id": "3", "change_message": "No fields changed.", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 8}, {"fields": {"action_flag": 1, "action_time": "2014-12-29T09:46:10Z", "object_repr": "x", "object_id": "1", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 9}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T11:48:49Z", "object_repr": "x", "object_id": "1", "change_message": "Added cottage \"dsaf\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 10}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T12:01:45Z", "object_repr": "x", "object_id": "1", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 11}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T12:01:58Z", "object_repr": "x", "object_id": "1", "change_message": "Added cottage \"c\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 12}, {"fields": {"action_flag": 1, "action_time": "2014-12-29T12:08:33Z", "object_repr": "b", "object_id": "1", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 13}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T12:19:10Z", "object_repr": "x", "object_id": "1", "change_message": "Changed b. Deleted cottage \"dsaf\". Deleted cottage \"c\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 14}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T12:30:37Z", "object_repr": "x", "object_id": "1", "change_message": "Added cottage \"a\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 15}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T12:46:44Z", "object_repr": "x", "object_id": "1", "change_message": "Deleted cottage \"a\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 16}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T12:46:58Z", "object_repr": "x", "object_id": "1", "change_message": "Added cottage \"b\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 17}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T12:47:08Z", "object_repr": "b", "object_id": "6", "change_message": "Changed is_recommended, is_banner and b.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 18}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T12:51:45Z", "object_repr": "b", "object_id": "1", "change_message": "Changed required.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 19}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T12:53:17Z", "object_repr": "b", "object_id": "6", "change_message": "Changed b.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 20}, {"fields": {"action_flag": 3, "action_time": "2014-12-29T13:09:07Z", "object_repr": "b", "object_id": "1", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 21}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:10:38Z", "object_repr": "b", "object_id": "6", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 22}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:10:50Z", "object_repr": "b", "object_id": "6", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 23}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:12:54Z", "object_repr": "x", "object_id": "1", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 24}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:13:09Z", "object_repr": "x", "object_id": "1", "change_message": "Added cottage \"c\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 25}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:14:01Z", "object_repr": "x", "object_id": "1", "change_message": "Added cottage \"x\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 26}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:16:42Z", "object_repr": "x", "object_id": "1", "change_message": "Added image \"Image object\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 27}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:19:27Z", "object_repr": "x", "object_id": "1", "change_message": "Added cottage \"t\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 28}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:21:04Z", "object_repr": "x", "object_id": "1", "change_message": "Added cottage \"d\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 29}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:26:09Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed title.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 30}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:26:25Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Added cottage \"f\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 31}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:31:16Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Added cottage \"x\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 32}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:37:21Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Added cottage \"xf\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 33}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T13:45:11Z", "object_repr": "xf", "object_id": "13", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 34}, {"fields": {"action_flag": 1, "action_time": "2014-12-29T14:05:14Z", "object_repr": "fields_specification", "object_id": "2", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 35}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T14:22:03Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 36}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T14:22:09Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 37}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T14:25:54Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Added cottage \"f\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 38}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T14:28:46Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 39}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T14:45:43Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed fields_specification.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 40}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T15:17:25Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed fields_specification.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 41}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T15:17:46Z", "object_repr": "f", "object_id": "14", "change_message": "Added Attribute value \"f: Fields Specification \"False\"\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 42}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T15:17:57Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed description for Attribute value \"sdafsdf: Fields Specification \"False\"\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 43}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T15:46:19Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed description for Attribute value \"Fields Specification\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 44}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T15:47:12Z", "object_repr": "f", "object_id": "14", "change_message": "Changed fields_specification.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 45}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T15:47:29Z", "object_repr": "f", "object_id": "14", "change_message": "Changed description for Attribute value \"Fields Specification\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 46}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T15:47:43Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed fields_specification.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 47}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T15:47:50Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed description for Attribute value \"Fields Specification\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 48}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T15:48:00Z", "object_repr": "f", "object_id": "14", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 49}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T15:51:06Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Deleted Attribute value \"Fields Specification\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 50}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T15:57:50Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed fields_specification.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 51}, {"fields": {"action_flag": 2, "action_time": "2014-12-29T16:13:49Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed fields_specification.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 52}, {"fields": {"action_flag": 1, "action_time": "2014-12-30T09:13:30Z", "object_repr": "dsfasdfdsaf", "object_id": "1", "change_message": "", "user": 1, "content_type": 14}, "model": "admin.logentry", "pk": 53}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T09:13:37Z", "object_repr": "dsfasdfdsaf", "object_id": "1", "change_message": "Added mptt test \"dfasdfad\".", "user": 1, "content_type": 14}, "model": "admin.logentry", "pk": 54}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T09:13:45Z", "object_repr": "dsfasdfdsaf", "object_id": "1", "change_message": "Added mptt test \"gfdgfdg\". Added mptt test \"gdfgfdg\".", "user": 1, "content_type": 14}, "model": "admin.logentry", "pk": 55}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T09:13:56Z", "object_repr": "dfasdfad", "object_id": "2", "change_message": "Added mptt test \"sdfad\". Added mptt test \"fdsfa\". Added mptt test \"fdsfad\".", "user": 1, "content_type": 14}, "model": "admin.logentry", "pk": 56}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T09:14:38Z", "object_repr": "fdsfad", "object_id": "7", "change_message": "Added mptt test \"sdfasdf\". Added mptt test \"sdfaf\". Added mptt test \"fsdfsad\". Added mptt test \"fsadfadf\".", "user": 1, "content_type": 14}, "model": "admin.logentry", "pk": 57}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T09:29:15Z", "object_repr": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c", "object_id": "5", "change_message": "Added cottage \"aaaa\".", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 58}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T09:39:31Z", "object_repr": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c", "object_id": "5", "change_message": "Added Attribute of Category \"SchemaForCategory object\".", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 59}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T09:40:06Z", "object_repr": "aaaa", "object_id": "15", "change_message": "Changed fields_specification.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 60}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T09:40:14Z", "object_repr": "aaaa", "object_id": "15", "change_message": "Changed description for Attribute value \"Fields Specification\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 61}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T09:58:10Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed fields_specification for cottage \"f\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 62}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T10:04:38Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 63}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T10:15:49Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 64}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T10:20:34Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed category for cottage \"f\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 65}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T10:20:50Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Added cottage \"a\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 66}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T10:21:23Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Changed category for cottage \"a\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 67}, {"fields": {"action_flag": 1, "action_time": "2014-12-30T11:13:04Z", "object_repr": "aaaaa", "object_id": "17", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 68}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T11:46:19Z", "object_repr": "aaaa", "object_id": "15", "change_message": "Added cottage \"banga-banga\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 69}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T11:55:29Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 70}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T11:58:06Z", "object_repr": "banga-banga", "object_id": "18", "change_message": "Changed category.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 71}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T11:58:34Z", "object_repr": "aaaaa", "object_id": "17", "change_message": "Added cottage \"eee\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 72}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T11:59:46Z", "object_repr": "aaaaa", "object_id": "17", "change_message": "Changed category for cottage \"eee\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 73}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T12:00:47Z", "object_repr": "aaaaa", "object_id": "17", "change_message": "Added cottage \"z\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 74}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T12:01:28Z", "object_repr": "aaaaa", "object_id": "17", "change_message": "Changed category for cottage \"z\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 75}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T12:01:46Z", "object_repr": "aaaaa", "object_id": "17", "change_message": "Added cottage \"fff\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 76}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T12:45:49Z", "object_repr": "aaaaa", "object_id": "17", "change_message": "Added cottage \"\u0443\". Changed category for cottage \"fff\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 77}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T12:46:16Z", "object_repr": "aaaaa", "object_id": "17", "change_message": "Added cottage \"\u043a\u0443\u0446\u043a\". Changed category for cottage \"\u0443\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 78}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T12:49:56Z", "object_repr": "aaaaa", "object_id": "17", "change_message": "Added cottage \"\u043f\". Changed category for cottage \"\u043a\u0443\u0446\u043a\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 79}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T13:01:42Z", "object_repr": "aaaaa", "object_id": "17", "change_message": "Added cottage \"erqwerqew\". Changed category for cottage \"\u043f\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 80}, {"fields": {"action_flag": 3, "action_time": "2014-12-30T13:53:47Z", "object_repr": "", "object_id": "26", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 81}, {"fields": {"action_flag": 1, "action_time": "2014-12-30T14:27:29Z", "object_repr": "fdsfasf", "object_id": "27", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 82}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T14:27:47Z", "object_repr": "fdsfasf", "object_id": "27", "change_message": "No fields changed.", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 83}, {"fields": {"action_flag": 1, "action_time": "2014-12-30T14:43:08Z", "object_repr": "", "object_id": "28", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 84}, {"fields": {"action_flag": 1, "action_time": "2014-12-30T14:50:00Z", "object_repr": "c", "object_id": "29", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 85}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T14:54:50Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "Added cottage \"xz\".", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 86}, {"fields": {"action_flag": 1, "action_time": "2014-12-30T14:55:28Z", "object_repr": "aaa", "object_id": "31", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 87}, {"fields": {"action_flag": 2, "action_time": "2014-12-30T14:55:50Z", "object_repr": "\u0421\u0435\u043b\u0438\u0433\u0435\u0440", "object_id": "2", "change_message": "Added Attribute of Category \"SchemaForCategory object\".", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 88}, {"fields": {"action_flag": 1, "action_time": "2014-12-30T15:06:29Z", "object_repr": "dsf", "object_id": "32", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 89}, {"fields": {"action_flag": 1, "action_time": "2014-12-30T15:09:56Z", "object_repr": "Gdgdf", "object_id": "33", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 90}, {"fields": {"action_flag": 1, "action_time": "2014-12-30T16:09:06Z", "object_repr": "gfdgdfg", "object_id": "35", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 91}, {"fields": {"action_flag": 3, "action_time": "2014-12-31T09:10:36Z", "object_repr": "fields_specification", "object_id": "2", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 92}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:11:40Z", "object_repr": "arrival_date", "object_id": "3", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 93}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:11:59Z", "object_repr": "departure_date", "object_id": "4", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 94}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:12:05Z", "object_repr": "departure_date", "object_id": "4", "change_message": "Changed title.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 95}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:13:19Z", "object_repr": "highway", "object_id": "5", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 96}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:13:58Z", "object_repr": "bathhouse", "object_id": "6", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 97}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:14:13Z", "object_repr": "spa", "object_id": "7", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 98}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:16:25Z", "object_repr": "sports_equipment", "object_id": "8", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 99}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:17:26Z", "object_repr": "departure_date", "object_id": "4", "change_message": "Changed help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 100}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:17:33Z", "object_repr": "arrival_date", "object_id": "3", "change_message": "Changed help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 101}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:19:52Z", "object_repr": "swimming_pool", "object_id": "9", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 102}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:20:16Z", "object_repr": "horse_club", "object_id": "10", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 103}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:21:20Z", "object_repr": "billiards", "object_id": "11", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 104}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:22:18Z", "object_repr": "saunabathouse", "object_id": "12", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 105}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:24:48Z", "object_repr": "kitchen", "object_id": "13", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 106}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:25:24Z", "object_repr": "snowmobileatv", "object_id": "14", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 107}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:26:03Z", "object_repr": "distance", "object_id": "15", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 108}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:28:53Z", "object_repr": "capacity", "object_id": "16", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 109}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:30:21Z", "object_repr": "region", "object_id": "17", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 110}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:31:34Z", "object_repr": "fireplace", "object_id": "18", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 111}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:31:45Z", "object_repr": "fireplace", "object_id": "18", "change_message": "Changed help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 112}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:32:23Z", "object_repr": "pond", "object_id": "19", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 113}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:33:01Z", "object_repr": "pet_friendly", "object_id": "20", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 114}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:33:21Z", "object_repr": "sports_equipment", "object_id": "8", "change_message": "Changed title.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 115}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:33:28Z", "object_repr": "horse_club", "object_id": "10", "change_message": "Changed title.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 116}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:33:43Z", "object_repr": "departure_date", "object_id": "4", "change_message": "Changed title.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 117}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:33:49Z", "object_repr": "arrival_date", "object_id": "3", "change_message": "Changed title.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 118}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:34:20Z", "object_repr": "distance", "object_id": "15", "change_message": "Changed datatype.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 119}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:35:01Z", "object_repr": "three_meals_day", "object_id": "21", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 120}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:36:08Z", "object_repr": "meals", "object_id": "22", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 121}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:36:45Z", "object_repr": "boat_rental", "object_id": "23", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 122}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:37:42Z", "object_repr": "distance", "object_id": "15", "change_message": "Changed datatype.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 123}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:38:07Z", "object_repr": "boat_rental", "object_id": "23", "change_message": "Changed help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 124}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:38:15Z", "object_repr": "meals", "object_id": "22", "change_message": "No fields changed.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 125}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:38:24Z", "object_repr": "pond", "object_id": "19", "change_message": "Changed help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 126}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:38:31Z", "object_repr": "fireplace", "object_id": "18", "change_message": "Changed help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 127}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:38:37Z", "object_repr": "snowmobileatv", "object_id": "14", "change_message": "Changed help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 128}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:38:45Z", "object_repr": "kitchen", "object_id": "13", "change_message": "Changed help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 129}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:38:59Z", "object_repr": "saunabathouse", "object_id": "12", "change_message": "Changed help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 130}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:39:08Z", "object_repr": "billiards", "object_id": "11", "change_message": "Changed help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 131}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:39:47Z", "object_repr": "highway", "object_id": "5", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 132}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:40:10Z", "object_repr": "distance", "object_id": "15", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 133}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:40:24Z", "object_repr": "capacity", "object_id": "16", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 134}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:40:38Z", "object_repr": "region", "object_id": "17", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 135}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:40:50Z", "object_repr": "arrival_date", "object_id": "3", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 136}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:41:01Z", "object_repr": "departure_date", "object_id": "4", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 137}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:41:09Z", "object_repr": "bathhouse", "object_id": "6", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 138}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:41:25Z", "object_repr": "sports_equipment", "object_id": "8", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 139}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:41:39Z", "object_repr": "spa", "object_id": "7", "change_message": "Changed help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 140}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:41:55Z", "object_repr": "swimming_pool", "object_id": "9", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 141}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:42:08Z", "object_repr": "horse_club", "object_id": "10", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 142}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:42:22Z", "object_repr": "billiards", "object_id": "11", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 143}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:42:50Z", "object_repr": "saunabathouse", "object_id": "12", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 144}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:42:58Z", "object_repr": "kitchen", "object_id": "13", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 145}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:43:18Z", "object_repr": "snowmobileatv", "object_id": "14", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 146}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:43:27Z", "object_repr": "fireplace", "object_id": "18", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 147}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:43:37Z", "object_repr": "pond", "object_id": "19", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 148}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:43:58Z", "object_repr": "pet_friendly", "object_id": "20", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 149}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:44:20Z", "object_repr": "three_meals_day", "object_id": "21", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 150}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:44:32Z", "object_repr": "meals", "object_id": "22", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 151}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:44:45Z", "object_repr": "boat_rental", "object_id": "23", "change_message": "Changed title and help_text.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 152}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T09:53:02Z", "object_repr": "napravlenie_lecheniya", "object_id": "24", "change_message": "", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 153}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T09:53:15Z", "object_repr": "capacity", "object_id": "16", "change_message": "Changed datatype.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 154}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T10:01:14Z", "object_repr": "set_of_treatments", "object_id": "24", "change_message": "Changed name.", "user": 1, "content_type": 7}, "model": "admin.logentry", "pk": 155}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T10:01:32Z", "object_repr": "\u0412\u0438\u0442\u0435\u0431\u0441\u043a\u0430\u044f \u043e\u0431\u043b.", "object_id": "1", "change_message": "", "user": 1, "content_type": 9}, "model": "admin.logentry", "pk": 156}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T10:01:44Z", "object_repr": "\u041c\u0438\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b.", "object_id": "2", "change_message": "", "user": 1, "content_type": 9}, "model": "admin.logentry", "pk": 157}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T10:01:53Z", "object_repr": "\u0413\u043e\u043c\u0435\u043b\u044c\u0441\u043a\u0430\u044f \u043e\u0431\u043b.", "object_id": "3", "change_message": "", "user": 1, "content_type": 9}, "model": "admin.logentry", "pk": 158}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T10:02:10Z", "object_repr": "\u0413\u043e\u043c\u0435\u043b\u044c\u0441\u043a\u0430\u044f \u043e\u0431\u043b.", "object_id": "3", "change_message": "Changed schema.", "user": 1, "content_type": 9}, "model": "admin.logentry", "pk": 159}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T10:08:57Z", "object_repr": "\u0411\u0440\u0435\u0441\u0442\u0441\u043a\u0430\u044f \u043e\u0431\u043b.", "object_id": "4", "change_message": "", "user": 1, "content_type": 9}, "model": "admin.logentry", "pk": 160}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T10:24:23Z", "object_repr": "\u041c\u043e\u0433\u0438\u043b\u0435\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b.", "object_id": "5", "change_message": "", "user": 1, "content_type": 9}, "model": "admin.logentry", "pk": 161}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T10:24:36Z", "object_repr": "\u0413\u0440\u043e\u0434\u043d\u0435\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b.", "object_id": "6", "change_message": "", "user": 1, "content_type": 9}, "model": "admin.logentry", "pk": 162}, {"fields": {"action_flag": 3, "action_time": "2014-12-31T10:29:31Z", "object_repr": "sdafsdf", "object_id": "1", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 163}, {"fields": {"action_flag": 3, "action_time": "2014-12-31T10:29:42Z", "object_repr": "gfdgdfg", "object_id": "35", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 164}, {"fields": {"action_flag": 3, "action_time": "2014-12-31T10:29:42Z", "object_repr": "Gdgdf", "object_id": "33", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 165}, {"fields": {"action_flag": 3, "action_time": "2014-12-31T10:29:42Z", "object_repr": "dsf", "object_id": "32", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 166}, {"fields": {"action_flag": 3, "action_time": "2014-12-31T10:29:42Z", "object_repr": "aaa", "object_id": "31", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 167}, {"fields": {"action_flag": 3, "action_time": "2014-12-31T10:29:42Z", "object_repr": "aaaaa", "object_id": "17", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 168}, {"fields": {"action_flag": 3, "action_time": "2014-12-31T10:29:42Z", "object_repr": "aaaa", "object_id": "15", "change_message": "", "user": 1, "content_type": 11}, "model": "admin.logentry", "pk": 169}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T11:08:29Z", "object_repr": "\u0414\u043e\u043c\u0430 \u043e\u0442\u0434\u044b\u0445\u0430", "object_id": "6", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 170}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T11:09:30Z", "object_repr": "\u0421\u0430\u043d\u0430\u0442\u043e\u0440\u0438\u0438", "object_id": "7", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 171}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T11:09:39Z", "object_repr": "\u041a\u043e\u0442\u0442\u0435\u0434\u0436\u0438", "object_id": "8", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 172}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T11:09:59Z", "object_repr": "\u041a\u043e\u0442\u0442\u0435\u0434\u0436\u0438", "object_id": "9", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 173}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T11:10:10Z", "object_repr": "\u041f\u0430\u043d\u0441\u0438\u043e\u043d\u0430\u0442\u044b", "object_id": "10", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 174}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T11:10:24Z", "object_repr": "\u0411\u0430\u0437\u044b \u043e\u0442\u0434\u044b\u0445\u0430", "object_id": "11", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 175}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T11:13:26Z", "object_repr": "\u0414\u043e\u043c\u0430 \u043e\u0442\u0434\u044b\u0445\u0430", "object_id": "12", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 176}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T11:13:35Z", "object_repr": "\u041a\u043e\u0442\u0442\u0435\u0434\u0436\u0438", "object_id": "13", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 177}, {"fields": {"action_flag": 1, "action_time": "2014-12-31T11:13:44Z", "object_repr": "\u0421\u0430\u043d\u0430\u0442\u043e\u0440\u0438\u0438", "object_id": "14", "change_message": "", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 178}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T11:31:43Z", "object_repr": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c", "object_id": "5", "change_message": "Changed is_separator.", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 179}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T11:45:14Z", "object_repr": "\u041a\u0440\u044b\u043c", "object_id": "4", "change_message": "Changed is_separator.", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 180}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T11:45:19Z", "object_repr": "\u041f\u043e\u0434\u043c\u043e\u0441\u043a\u043e\u0432\u044c\u0435", "object_id": "3", "change_message": "Changed is_separator.", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 181}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T11:45:23Z", "object_repr": "\u0421\u0435\u043b\u0438\u0433\u0435\u0440", "object_id": "2", "change_message": "Changed is_separator.", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 182}, {"fields": {"action_flag": 2, "action_time": "2014-12-31T11:45:27Z", "object_repr": "\u0420\u0435\u0433\u0438\u043e\u043d\u044b", "object_id": "1", "change_message": "Changed is_separator and _ref_node_id.", "user": 1, "content_type": 8}, "model": "admin.logentry", "pk": 183}]
+[
+{
+    "fields": {
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2014-12-29T09:28:27Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$OoAl3Rs0EN8K$FePRQa2m1lOpNj6g052z9U7vGsU0/3ij85RupoELMpc=",
+        "email": "bcdkey@gmail.com",
+        "date_joined": "2014-12-29T09:26:22Z"
+    },
+    "model": "auth.user",
+    "pk": 1
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "arrival_date",
+        "title": "\u0414\u0430\u0442\u0430 \u0437\u0430\u0435\u0437\u0434\u0430",
+        "datatype": "date",
+        "required": false,
+        "searched": true,
+        "help_text": "\u0414\u0430\u0442\u0430 \u0437\u0430\u0435\u0437\u0434\u0430",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 3
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "departure_date",
+        "title": "\u0414\u0430\u0442\u0430 \u043e\u0442\u044a\u0435\u0437\u0434\u0430",
+        "datatype": "date",
+        "required": false,
+        "searched": true,
+        "help_text": "\u0414\u0430\u0442\u0430 \u043e\u0442\u044a\u0435\u0437\u0434\u0430",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 4
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "highway",
+        "title": "\u0428\u043e\u0441\u0441\u0435",
+        "datatype": "one",
+        "required": false,
+        "searched": true,
+        "help_text": "\u0428\u043e\u0441\u0441\u0435, \u043f\u043e \u043a\u043e\u0442\u043e\u0440\u043e\u043c\u0443 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d \u043e\u0431\u044a\u0435\u043a\u0442",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 5
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "bathhouse",
+        "title": "\u0411\u0430\u043d\u044f",
+        "datatype": "bool",
+        "required": false,
+        "searched": true,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0431\u0430\u043d\u0438",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 6
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "spa",
+        "title": "SPA",
+        "datatype": "bool",
+        "required": false,
+        "searched": true,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 SPA",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 7
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "sports_equipment",
+        "title": "\u0421\u043f\u043e\u0440\u0442\u0438\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044c",
+        "datatype": "bool",
+        "required": false,
+        "searched": true,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0441\u043f\u043e\u0440\u0442\u0438\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044f",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 8
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "swimming_pool",
+        "title": "\u0411\u0430\u0441\u0441\u0435\u0439\u043d",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0431\u0430\u0441\u0441\u0435\u0439\u043d\u0430",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 9
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "horse_club",
+        "title": "\u041a\u043e\u043d\u043d\u044b\u0439 \u043a\u043b\u0443\u0431",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u043a\u043e\u043d\u043d\u043e\u0433\u043e \u043a\u043b\u0443\u0431\u0430",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 10
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "billiards",
+        "title": "\u0411\u0438\u043b\u044c\u044f\u0440\u0434",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0431\u0438\u043b\u044c\u044f\u0440\u0434\u0430",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 11
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "saunabathouse",
+        "title": "\u0421\u0430\u0443\u043d\u0430/\u0411\u0430\u0441\u0441\u0435\u0439\u043d",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0441\u0430\u0443\u043d\u044b/\u0431\u0430\u0441\u0441\u0435\u0439\u043d\u0430",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 12
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "kitchen",
+        "title": "\u041a\u0443\u0445\u043d\u044f",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u043a\u0443\u0445\u043d\u0438",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 13
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "snowmobileatv",
+        "title": "\u041a\u0432\u0430\u0434\u0440\u043e\u0446\u0438\u043a\u043b\u044b/\u0421\u043d\u0435\u0433\u043e\u0445\u043e\u0434\u044b",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0441\u043d\u0435\u0433\u043e\u0445\u043e\u0434\u043e\u0432 \u0438 \u043a\u0432\u0430\u0434\u0440\u0430\u0446\u0438\u043a\u043b\u043e\u0432",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 14
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "distance",
+        "title": "\u0420\u0430\u0441\u0441\u0442\u043e\u044f\u043d\u0438\u0435 \u043e\u0442 \u0448\u043e\u0441\u0441\u0435",
+        "datatype": "one",
+        "required": false,
+        "searched": false,
+        "help_text": "\u0420\u0430\u0441\u0441\u0442\u043e\u044f\u043d\u0438\u0435 \u043e\u0442 \u0448\u043e\u0441\u0441\u0435 \u0434\u043e \u043e\u0431\u044a\u0435\u043a\u0442\u0430",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 15
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "capacity",
+        "title": "\u0412\u043c\u0435\u0441\u0442\u0438\u043c\u043e\u0441\u0442\u044c",
+        "datatype": "many",
+        "required": false,
+        "searched": false,
+        "help_text": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u0433\u043e\u0441\u0442\u0435\u0439 \u043c\u043e\u0436\u0435\u0442 \u043f\u0440\u0438\u043d\u044f\u0442\u044c \u043e\u0431\u044a\u0435\u043a\u0442",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 16
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "region",
+        "title": "\u041e\u0431\u043b\u0430\u0441\u0442\u044c",
+        "datatype": "one",
+        "required": false,
+        "searched": false,
+        "help_text": "\u0412 \u043a\u0430\u043a\u043e\u0439 \u043e\u0431\u043b\u0430\u0441\u0442\u0438 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d \u043e\u0431\u044a\u0435\u043a\u0442",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 17
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "fireplace",
+        "title": "\u041a\u0430\u043c\u0438\u043d",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u043a\u0430\u043c\u0438\u043d\u0430",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 18
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "pond",
+        "title": "\u0412\u043e\u0434\u043e\u0435\u043c",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0432\u043e\u0434\u043e\u0435\u043c\u0430",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 19
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "pet_friendly",
+        "title": "\u0412\u044a\u0435\u0437\u0434 \u0441 \u0436\u0438\u0432\u043e\u0442\u043d\u044b\u043c\u0438",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u043b\u0438 \u043e\u0431\u044a\u0435\u043a\u0442 \u043d\u0430\u043b\u0438\u0447\u0438\u0435 \u0434\u043e\u043c\u0430\u0448\u043d\u0438\u0445 \u0436\u0438\u0432\u043e\u0442\u043d\u044b\u0445",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 20
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "three_meals_day",
+        "title": "\u0422\u0440\u0435\u0445\u0440\u0430\u0437\u043e\u0432\u043e\u0435 \u043f\u0438\u0442\u0430\u043d\u0438\u0435",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u043b\u0438 \u043e\u0431\u044a\u0435\u043a\u0442 \u0442\u0440\u0435\u0445\u0440\u0430\u0437\u043e\u0432\u043e\u0435 \u043f\u0438\u0442\u0430\u043d\u0438\u0435",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 21
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "meals",
+        "title": "\u041f\u0438\u0442\u0430\u043d\u0438\u0435",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u043b\u0438 \u043e\u0431\u044a\u0435\u043a\u0442 \u043f\u0438\u0442\u0430\u043d\u0438\u0435",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 22
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "boat_rental",
+        "title": "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a",
+        "datatype": "bool",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0430\u0440\u0435\u043d\u0434\u044b \u043b\u043e\u0434\u043e\u043a",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 23
+},
+{
+    "fields": {
+        "sortable": false,
+        "name": "set_of_treatments",
+        "title": "\u041d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u043b\u0435\u0447\u0435\u043d\u0438\u044f",
+        "datatype": "many",
+        "required": false,
+        "searched": false,
+        "help_text": "\u041d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u043b\u0435\u0447\u0435\u043d\u0438\u044f \u0432 \u043e\u0431\u044a\u0435\u043a\u0442\u0435",
+        "filtered": false
+    },
+    "model": "main.schema",
+    "pk": 24
+},
+{
+    "fields": {
+        "rght": 22,
+        "name": "dsfasdfdsaf",
+        "parent": null,
+        "level": 0,
+        "lft": 1,
+        "tree_id": 1
+    },
+    "model": "main.mptttest",
+    "pk": 1
+},
+{
+    "fields": {
+        "rght": 17,
+        "name": "dfasdfad",
+        "parent": 1,
+        "level": 1,
+        "lft": 2,
+        "tree_id": 1
+    },
+    "model": "main.mptttest",
+    "pk": 2
+},
+{
+    "fields": {
+        "rght": 21,
+        "name": "gfdgfdg",
+        "parent": 1,
+        "level": 1,
+        "lft": 20,
+        "tree_id": 1
+    },
+    "model": "main.mptttest",
+    "pk": 3
+},
+{
+    "fields": {
+        "rght": 19,
+        "name": "gdfgfdg",
+        "parent": 1,
+        "level": 1,
+        "lft": 18,
+        "tree_id": 1
+    },
+    "model": "main.mptttest",
+    "pk": 4
+},
+{
+    "fields": {
+        "rght": 16,
+        "name": "sdfad",
+        "parent": 2,
+        "level": 2,
+        "lft": 15,
+        "tree_id": 1
+    },
+    "model": "main.mptttest",
+    "pk": 5
+},
+{
+    "fields": {
+        "rght": 4,
+        "name": "fdsfa",
+        "parent": 2,
+        "level": 2,
+        "lft": 3,
+        "tree_id": 1
+    },
+    "model": "main.mptttest",
+    "pk": 6
+},
+{
+    "fields": {
+        "rght": 14,
+        "name": "fdsfad",
+        "parent": 2,
+        "level": 2,
+        "lft": 5,
+        "tree_id": 1
+    },
+    "model": "main.mptttest",
+    "pk": 7
+},
+{
+    "fields": {
+        "rght": 13,
+        "name": "sdfasdf",
+        "parent": 7,
+        "level": 3,
+        "lft": 12,
+        "tree_id": 1
+    },
+    "model": "main.mptttest",
+    "pk": 8
+},
+{
+    "fields": {
+        "rght": 11,
+        "name": "sdfaf",
+        "parent": 7,
+        "level": 3,
+        "lft": 10,
+        "tree_id": 1
+    },
+    "model": "main.mptttest",
+    "pk": 9
+},
+{
+    "fields": {
+        "rght": 9,
+        "name": "fsdfsad",
+        "parent": 7,
+        "level": 3,
+        "lft": 8,
+        "tree_id": 1
+    },
+    "model": "main.mptttest",
+    "pk": 10
+},
+{
+    "fields": {
+        "rght": 7,
+        "name": "fsadfadf",
+        "parent": 7,
+        "level": 3,
+        "lft": 6,
+        "tree_id": 1
+    },
+    "model": "main.mptttest",
+    "pk": 11
+},
+{
+    "fields": {
+        "rgt": 28,
+        "name": "\u0420\u0435\u0433\u0438\u043e\u043d\u044b",
+        "is_separator": true,
+        "lft": 1,
+        "depth": 1,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 1
+},
+{
+    "fields": {
+        "rgt": 27,
+        "name": "\u0421\u0435\u043b\u0438\u0433\u0435\u0440",
+        "is_separator": true,
+        "lft": 20,
+        "depth": 2,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 2
+},
+{
+    "fields": {
+        "rgt": 19,
+        "name": "\u041f\u043e\u0434\u043c\u043e\u0441\u043a\u043e\u0432\u044c\u0435",
+        "is_separator": true,
+        "lft": 12,
+        "depth": 2,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 3
+},
+{
+    "fields": {
+        "rgt": 3,
+        "name": "\u041a\u0440\u044b\u043c",
+        "is_separator": true,
+        "lft": 2,
+        "depth": 2,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 4
+},
+{
+    "fields": {
+        "rgt": 11,
+        "name": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c",
+        "is_separator": true,
+        "lft": 4,
+        "depth": 2,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 5
+},
+{
+    "fields": {
+        "rgt": 10,
+        "name": "\u0414\u043e\u043c\u0430 \u043e\u0442\u0434\u044b\u0445\u0430",
+        "is_separator": false,
+        "lft": 9,
+        "depth": 3,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 6
+},
+{
+    "fields": {
+        "rgt": 8,
+        "name": "\u0421\u0430\u043d\u0430\u0442\u043e\u0440\u0438\u0438",
+        "is_separator": false,
+        "lft": 7,
+        "depth": 3,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 7
+},
+{
+    "fields": {
+        "rgt": 6,
+        "name": "\u041a\u043e\u0442\u0442\u0435\u0434\u0436\u0438",
+        "is_separator": false,
+        "lft": 5,
+        "depth": 3,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 8
+},
+{
+    "fields": {
+        "rgt": 26,
+        "name": "\u041a\u043e\u0442\u0442\u0435\u0434\u0436\u0438",
+        "is_separator": false,
+        "lft": 25,
+        "depth": 3,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 9
+},
+{
+    "fields": {
+        "rgt": 24,
+        "name": "\u041f\u0430\u043d\u0441\u0438\u043e\u043d\u0430\u0442\u044b",
+        "is_separator": false,
+        "lft": 23,
+        "depth": 3,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 10
+},
+{
+    "fields": {
+        "rgt": 22,
+        "name": "\u0411\u0430\u0437\u044b \u043e\u0442\u0434\u044b\u0445\u0430",
+        "is_separator": false,
+        "lft": 21,
+        "depth": 3,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 11
+},
+{
+    "fields": {
+        "rgt": 18,
+        "name": "\u0414\u043e\u043c\u0430 \u043e\u0442\u0434\u044b\u0445\u0430",
+        "is_separator": false,
+        "lft": 17,
+        "depth": 3,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 12
+},
+{
+    "fields": {
+        "rgt": 16,
+        "name": "\u041a\u043e\u0442\u0442\u0435\u0434\u0436\u0438",
+        "is_separator": false,
+        "lft": 15,
+        "depth": 3,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 13
+},
+{
+    "fields": {
+        "rgt": 14,
+        "name": "\u0421\u0430\u043d\u0430\u0442\u043e\u0440\u0438\u0438",
+        "is_separator": false,
+        "lft": 13,
+        "depth": 3,
+        "tree_id": 1
+    },
+    "model": "main.category",
+    "pk": 14
+},
+{
+    "fields": {
+        "schema": 17,
+        "title": "\u0412\u0438\u0442\u0435\u0431\u0441\u043a\u0430\u044f \u043e\u0431\u043b."
+    },
+    "model": "main.choice",
+    "pk": 1
+},
+{
+    "fields": {
+        "schema": 17,
+        "title": "\u041c\u0438\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b."
+    },
+    "model": "main.choice",
+    "pk": 2
+},
+{
+    "fields": {
+        "schema": 17,
+        "title": "\u0413\u043e\u043c\u0435\u043b\u044c\u0441\u043a\u0430\u044f \u043e\u0431\u043b."
+    },
+    "model": "main.choice",
+    "pk": 3
+},
+{
+    "fields": {
+        "schema": 17,
+        "title": "\u0411\u0440\u0435\u0441\u0442\u0441\u043a\u0430\u044f \u043e\u0431\u043b."
+    },
+    "model": "main.choice",
+    "pk": 4
+},
+{
+    "fields": {
+        "schema": 17,
+        "title": "\u041c\u043e\u0433\u0438\u043b\u0435\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b."
+    },
+    "model": "main.choice",
+    "pk": 5
+},
+{
+    "fields": {
+        "schema": 17,
+        "title": "\u0413\u0440\u043e\u0434\u043d\u0435\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b."
+    },
+    "model": "main.choice",
+    "pk": 6
+}
+]
