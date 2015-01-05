@@ -77,6 +77,22 @@ class MpttTest(MPTTModel):
         return self.name
 
 
+class CottageRequest(models.Model):
+    name = models.CharField(_('Name'), max_length=100, blank=True)
+    email = models.EmailField(_('Email'), max_length=75, blank=True)
+    arrival_date = models.DateField(_('Arrival Date'), blank=True)
+    departure_date = models.DateField(_('Departure Date'), blank=True)
+    additional_info = models.TextField(_('Additional Info'), blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    
+    def __unicode__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = _('Request')
+        verbose_name_plural = _('Requests')
+
+
 class Category(NS_Node):
     name = models.CharField(max_length=30)
     is_separator = models.BooleanField(_("Is separator"), default=False)
