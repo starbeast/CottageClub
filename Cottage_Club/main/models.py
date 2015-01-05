@@ -1,5 +1,6 @@
 # coding=utf-8
 import os
+import unidecode
 
 from eav.models import BaseAttribute, BaseSchema, BaseChoice, BaseEntity
 
@@ -8,11 +9,11 @@ from tinymce.models import HTMLField
 from treebeard.ns_tree import NS_Node
 from treebeard.al_tree import AL_Node
 from mptt.models import MPTTModel, TreeForeignKey
-from django.template.defaultfilters import slugify
 
 from django.core.files.storage import FileSystemStorage as OverwriteStorage
 
 from autoslug.fields import AutoSlugField
+from Cottage_Club.main.utils import slugify
 
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
@@ -27,6 +28,10 @@ from Cottage_Club.main.managers import CottageManager, AttachedImageManager, Gen
 
 Max = models.Max
 # Create your models here.
+
+
+def slugify_attr_name(name):
+    return unidecode.unidecode(slugify((name.replace('_', '-')).replace('-', '_')))
 
 
 def get_entity_lookups(entity):
@@ -129,8 +134,8 @@ class Cottage(BaseEntity, AL_Node):
     sib_order = models.PositiveIntegerField(default=0)
     title = models.CharField(_('Object title'),
                              max_length=255, blank=False)
-    slug = AutoSlugField(null=True, populate_from='title', unique_with='category'
-                         , manager=objects, blank=True, editable=False)
+    slug = AutoSlugField(max_length=250, populate_from='title', unique_with='category',
+                         editable=True, blank=True, slugify=slugify_attr_name)
     minimal_price = models.IntegerField(default=0, blank=False, null=False)
     detailed_description = HTMLField(_('Detailed description'), null=True, blank=True)
     description = models.TextField(_('Description'), blank=True)

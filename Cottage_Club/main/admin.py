@@ -62,7 +62,7 @@ class CottageFormSet(BaseEntityInlineFormSet):
 class CottageAdminInline(admin.StackedInline):
     model = Cottage
     form = CottageDynamicCategoryForm
-    exclude = ('sib_order', 'is_banner', 'is_recommended')
+    exclude = ('sib_order', 'is_banner', 'is_recommended', 'slug')
     readonly_fields = ('parent', )
     formset = CottageFormSet
     extra = 0
@@ -116,7 +116,7 @@ class CottageAdmin(TreeAdmin):
     inlines = (ImagesInline, CottageAdminInlineCottage, AttributeInline)
     change_form_template = "admin/cottage_change_form.html"
     eav_fieldsets = None
-    exclude = ('sib_order', )
+    exclude = ('sib_order', 'slug')
 
     def render_change_form(self, request, context, **kwargs):
         """
