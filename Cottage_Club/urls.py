@@ -13,7 +13,11 @@ urlpatterns = patterns('',
     # url(r'^$', 'Cottage_Club.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin-tools/', include('admin_tools.urls')),
     url(r'^admin/ajax/', include(ajax_urls)),
     url(r'^$', TemplateView.as_view(template_name="base.html"), name='base'),
 )

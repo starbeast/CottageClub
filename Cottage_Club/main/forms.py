@@ -1,7 +1,7 @@
 from eav.forms import BaseDynamicEntityForm
 from eav.forms import BaseSchemaForm
 from collections import OrderedDict
-from Cottage_Club.main.models import Cottage, Schema, Image, Choice, Category
+from Cottage_Club.main.models import Cottage, Schema, Image, Choice, Category, DatePrices
 from django.forms import ValidationError, ModelForm, CharField, widgets, TextInput, ModelChoiceField
 from django.utils.translation import ugettext_lazy as _
 from copy import deepcopy
@@ -21,6 +21,11 @@ def image_form_factory(lang='en', debug=False):
         class Meta:
             model = Image
     return _AttachedImageAdminForm
+
+
+class DatePriceForm(ModelForm):
+    class Meta:
+        model = DatePrices
 
 
 class DynamicEntityForm(BaseDynamicEntityForm):

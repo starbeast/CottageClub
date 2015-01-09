@@ -78,9 +78,9 @@ class MpttTest(MPTTModel):
 
 
 class Category(NS_Node):
-    name = models.CharField(max_length=30)
+    name = models.CharField(_('Name'), max_length=30)
     is_separator = models.BooleanField(_("Is separator"), default=False)
-    schemas = models.ManyToManyField(Schema, through='SchemaForCategory', related_name='categories')
+    schemas = models.ManyToManyField(Schema, verbose_name=_('Attributes'), through='SchemaForCategory', related_name='categories')
 
     def __unicode__(self):
         return self.name
@@ -91,13 +91,17 @@ class Category(NS_Node):
 
 
 class Choice(BaseChoice):
-    schema = models.ForeignKey(Schema, related_name='choices', limit_choices_to={'datatype__in': [BaseSchema.TYPE_MANY, BaseSchema.TYPE_ONE]})
+    schema = models.ForeignKey(Schema, verbose_name=_('Attribute'), related_name='choices', limit_choices_to={'datatype__in': [BaseSchema.TYPE_MANY, BaseSchema.TYPE_ONE]})
+
+    class Meta:
+        verbose_name = _('Choice')
+        verbose_name_plural = _('Choices')
 
 
 class Attribute(BaseAttribute):
-    schema = models.ForeignKey(Schema, related_name='attrs')
-    choice = models.ForeignKey(Choice, blank=True, null=True)
-    description = models.CharField(max_length=200, blank=True)
+    schema = models.ForeignKey(Schema, related_name='attrs', verbose_name=_('Attribute'))
+    choice = models.ForeignKey(Choice, blank=True, null=True, verbose_name=_('Choice'))
+    description = models.CharField(_('Description'), max_length=200, blank=True)
     is_separator = models.BooleanField(_('Will be a separator'), default=False)
     order = models.IntegerField(_('Order in the list'), default=0)
 
@@ -111,18 +115,22 @@ class Attribute(BaseAttribute):
 
 class Cottage(BaseEntity, AL_Node):
 
+    class Meta:
+        verbose_name = _('Cottage')
+        verbose_name_plural = _('Cottages')
+
     PARENT, CHILD = 'parent', 'child'
     STRUCTURE_CHOICES = (
         (PARENT, _('Parent object')),
         (CHILD, _('Inner object'))
     )
     objects = CottageManager()
-    attrs = generic.GenericRelation(Attribute, object_id_field='entity_id',
+    attrs = generic.GenericRelation(Attribute, verbose_name=_('Attribute values for the object'), object_id_field='entity_id',
                                     content_type_field='entity_type')
-    category = models.ForeignKey(
-        Category
+    category = models.ForeignKey(Category
         , blank=True
         , null=True
+        , verbose_name=_('Category')
         , help_text=_("leave blank if this is not a parent object"))
     images = generic.GenericRelation('Image')
     structure = models.CharField(
@@ -136,12 +144,12 @@ class Cottage(BaseEntity, AL_Node):
                              max_length=255, blank=False)
     slug = AutoSlugField(max_length=250, populate_from='title', unique_with='category',
                          editable=True, blank=True, slugify=slugify_attr_name)
-    minimal_price = models.IntegerField(default=0, blank=False, null=False)
+    minimal_price = models.IntegerField(_('Minimal price'), default=0, blank=False, null=False)
     detailed_description = HTMLField(_('Detailed description'), null=True, blank=True)
     description = models.TextField(_('Description'), blank=True)
 
-    is_recommended = models.BooleanField(default=False)
-    is_banner = models.BooleanField(default=False)
+    is_recommended = models.BooleanField(_('Is recommended'), default=False)
+    is_banner = models.BooleanField(_('Is banner'), default=False)
 
     date_created = models.DateTimeField(_("Date created"), auto_now_add=True)
 
@@ -254,10 +262,10 @@ def _upload_path_wrapper(self, filename):
 
 
 class DatePrices(models.Model):
-    start_date = models.DateField(auto_now_add=True)
-    end_date = models.DateField(auto_now_add=True)
-    price = models.IntegerField(default=0)
-    cottage = models.ForeignKey(Cottage, related_name='prices', null=True, blank=True, verbose_name=_('Pricing'))
+    start_date = models.DateField(_('Date of arrival'), auto_now_add=False)
+    end_date = models.DateField(_('Date of departure'), auto_now_add=False)
+    price = models.IntegerField(_('Price'), default=0)
+    cottage = models.ForeignKey(Cottage, related_name='prices', null=True, blank=True, verbose_name=_('Cottage'))
 
 
 class GenericModelBase(models.Model):
@@ -508,7 +516,7 @@ class Image(models.Model, ImageContainingModel):
 
     def image_tag(self):
         return u'<img src="%s" style="max-width: 120px" />' % self.image.url
-    image_tag.short_description = 'Image'
+    image_tag.short_description = _('Image')
     image_tag.allow_tags = True
 
     image = models.ImageField(_('Image'), upload_to='cottage_images'
@@ -529,10 +537,10 @@ class SchemaForMpttTest(models.Model):
 
 
 class SchemaForCategory(models.Model):
-    schema = models.ForeignKey(Schema)
-    category = models.ForeignKey(Category)
-    will_be_a_filter = models.BooleanField(default=False)
-    name_on_forms = models.CharField(max_length=100, blank=True)
+    schema = models.ForeignKey(Schema, verbose_name=_('Attribute'))
+    category = models.ForeignKey(Category, verbose_name=_('Category'))
+    will_be_a_filter = models.BooleanField(_("Will be a filter"), default=False)
+    name_on_forms = models.CharField(_("Name on forms"), max_length=100, blank=True)
 
     class Meta:
         verbose_name = _('Attribute of Category')

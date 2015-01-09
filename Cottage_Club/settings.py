@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -30,6 +34,10 @@ MPTT_ADMIN_LEVEL_INDENT = 10
 # Application definition
 
 INSTALLED_APPS = (
+    'admin_tools',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,11 +48,31 @@ INSTALLED_APPS = (
     'storages',
     'tinymce',
     'mptt',
+    'pymorphy',
     'pipeline',
     'django_pyscss',
     'Cottage_Club.compass_pipeline',
     'Cottage_Club.main',
 )
+
+ADMIN_TOOLS_MENU = 'Cottage_Club.menu.CustomMenu'
+ADMIN_TOOLS_INDEX_DASHBOARD = 'Cottage_Club.dashboard.CustomIndexDashboard'
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'Cottage_Club.dashboard.CustomAppIndexDashboard'
+
+PYMORPHY_DICTS = {
+    'ru': {'dir': '%s/../cdb/' % ROOT_PATH, 'backend': 'cdb'},
+}
+
+LOCALE_PATHS = ('%s/../locale' % ROOT_PATH, )
+
+_ = lambda s: s
+
+LANGUAGES = (
+    ('ru', _('Russian')),
+)
+
+LANGUAGE_CODE = 'ru-RU'
+
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
@@ -67,8 +95,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
-
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
@@ -81,6 +107,12 @@ TEMPLATE_DIRS = (
 ROOT_URLCONF = 'Cottage_Club.urls'
 
 WSGI_APPLICATION = 'Cottage_Club.wsgi.application'
+
+
+AWS_ACCESS_KEY = 'AKIAIG3EOAYC3RY4FXZQ'
+AWS_ACCESS_SECRET = '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'
+
+
 
 
 # Database
@@ -137,7 +169,7 @@ TINYMCE_COMPRESSOR = False
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 

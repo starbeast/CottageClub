@@ -4,6 +4,7 @@ Pillow==2.6.1
 PyYAML==3.11
 Unidecode==0.4.17
 argparse==1.2.1
+django-admin-tools==0.5.2
 django-autoslug==1.7.2
 django-composition==0.2
 django-generic-images==0.36.1
@@ -21,5 +22,7 @@ enum34==1.0.4
 futures==2.2.0
 pathlib==1.0.1
 pyScss==1.2.1
+pymorphy==0.5.6
+python-cdb==0.35
 six==1.9.0
 wsgiref==0.1.2
